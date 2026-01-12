@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>STATE – Mehr Fokus. Besser schlafen. Abends wirklich abschalten.</title>
+  <meta name="description" content="STATE ist ein personalisierter Trainingsplan für dein Nervensystem. Wenige Minuten am Tag. Spürbare Wirkung im Alltag. Pre-Launch: Interesse vormerken." />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="STATE – Mehr Fokus. Besser schlafen. Abends wirklich abschalten." />
+  <meta property="og:description" content="Ein personalisierter Trainingsplan für dein Nervensystem. Wenige Minuten am Tag. Spürbare Wirkung im Alltag." />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root{
+      --c1:#0097b2; --c2:#004e5b; --c3:#b4dde3; --c4:#e9d8b2; --c5:#f6f5f3; --c6:#3b3b3b;
+      --bg:#041b20;
+      --text: rgba(246,245,243,.92);
+      --muted: rgba(246,245,243,.74);
+      --muted2: rgba(246,245,243,.58);
+      --brand: var(--c1);
+      --brand2:#27a9c0;
+      --brandInk:#041b20;
+      --ring: rgba(0,151,178,.42);
+      --radius:20px;
+      --shadow:0 18px 60px rgba(0,0,0,.38);
+      --max:1040px;
+    }
+
+    /* Fonts (GDPR-safe tip): self-host Montserrat instead of loading from Google Fonts. */
+    /* If you add font files to /fonts, uncomment:
+    @font-face{ font-family:"Montserrat"; src:url("./fonts/Montserrat.woff2") format("woff2"); font-display:swap; }
+    @font-face{ font-family:"DejaVu Serif"; src:url("./fonts/DejaVuSerif.woff2") format("woff2"); font-display:swap; }
+    */
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family:"Montserrat", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background:
+        radial-gradient(950px 620px at 18% -10%, rgba(0,151,178,.22), transparent 62%),
+        radial-gradient(860px 620px at 92% 0%, rgba(180,221,227,.16), transparent 58%),
+        radial-gradient(900px 760px at 50% 110%, rgba(246,245,243,.06), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.55;
+      letter-spacing:.2px;
+    }
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width:var(--max); margin:0 auto; padding:28px 20px 84px; }
+
+    .topbar{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 0 18px; }
+    .logo{ display:flex; align-items:center; gap:10px; font-weight:760; letter-spacing:.8px; }
+    .dot{ width:12px; height:12px; border-radius:999px; background:var(--brand); box-shadow:0 0 0 6px rgba(0,151,178,.12); }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 14px; border-radius:999px;
+      background:rgba(246,245,243,.06);
+      border:1px solid rgba(246,245,243,.10);
+      color:var(--muted);
+      font-size:13px;
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+    }
+    .pill b{ color:var(--text); font-weight:650; }
+
+    .hero{
+      padding:18px 0 20px;
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:26px;
+      align-items:start;
+    }
+    @media (max-width:920px){ .hero{ grid-template-columns:1fr; } }
+
+    h1{ font-size:clamp(34px,4.8vw,58px); line-height:1.05; margin:10px 0 12px; letter-spacing:-.7px; }
+    .sub{ font-size:clamp(16px,1.6vw,18px); color:var(--muted); max-width:60ch; margin:0 0 14px; }
+    .tagline{ color:var(--muted); margin:12px 0 18px; font-size:15px; }
+    .tagline em{ color:var(--text); font-style:normal; font-weight:650; }
+
+    .ctaRow{ display:flex; flex-wrap:wrap; gap:12px; margin-top:18px; }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 16px; border-radius:14px;
+      border:1px solid rgba(246,245,243,.12);
+      background:rgba(246,245,243,.06);
+      color:var(--text); font-weight:680;
+      transition:transform .08s ease, background .2s ease, border .2s ease;
+    }
+    .btn:hover{ background:rgba(246,245,243,.09); border-color:rgba(246,245,243,.18); transform:translateY(-1px); }
+    .btnPrimary{
+      background:linear-gradient(180deg, var(--brand2), var(--brand));
+      border-color:rgba(0,0,0,.18);
+      color:var(--brandInk);
+      box-shadow:0 16px 46px rgba(0,151,178,.22);
+    }
+    .btn:focus{ outline:none; box-shadow:0 0 0 4px var(--ring); }
+    .note{ font-size:13px; color:var(--muted2); margin-top:10px; }
+
+    .card{
+      background:linear-gradient(180deg, rgba(246,245,243,.09), rgba(246,245,243,.05));
+      border:1px solid rgba(246,245,243,.12);
+      border-radius:var(--radius);
+      padding:18px 18px;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+    }
+    .card h3{ margin:0 0 10px; font-size:15px; letter-spacing:.2px; color:var(--text); }
+    .mini{ display:flex; flex-direction:column; gap:14px; }
+
+    .metricGrid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    @media (max-width:520px){ .metricGrid{ grid-template-columns:1fr; } }
+    .metric{ padding:12px; border-radius:16px; background:rgba(246,245,243,.06); border:1px solid rgba(246,245,243,.10); }
+    .metric .k{ font-size:12px; color:var(--muted2); margin-bottom:2px; }
+    .metric .v{ font-size:16px; font-weight:760; letter-spacing:.1px; }
+
+    .divider{ height:1px; margin:22px 0; background:linear-gradient(90deg, transparent, rgba(246,245,243,.14), transparent); border:0; }
+
+    .section{ padding:22px 0; }
+    .section h2{ font-size:22px; margin:0 0 10px; letter-spacing:-.2px; }
+    .section p{ color:var(--muted); margin:0 0 12px; max-width:78ch; }
+    .section p strong{ color:var(--text); }
+    ul{ margin:8px 0 0 18px; color:var(--muted); }
+    li{ margin:6px 0; }
+
+    .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start; }
+    @media (max-width:820px){ .grid2{ grid-template-columns:1fr; } }
+
+    .quote{ border-left:3px solid rgba(0,151,178,.70); padding-left:14px; color:var(--text); margin:10px 0 0; font-weight:700; }
+
+    .faq details{ background:rgba(246,245,243,.05); border:1px solid rgba(246,245,243,.10); border-radius:16px; padding:12px 14px; margin:10px 0; }
+    .faq summary{ cursor:pointer; font-weight:720; color:var(--text); list-style:none; }
+    .faq summary::-webkit-details-marker{ display:none; }
+    .faq .a{ color:var(--muted); margin-top:10px; }
+
+    form{ margin-top:12px; }
+    .formRow{ display:flex; gap:12px; flex-wrap:wrap; margin-top:8px; }
+    .input{
+      flex:1 1 280px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(246,245,243,.16);
+      background:rgba(0,78,91,.22);
+      color:var(--text);
+      outline:none;
+    }
+    .input::placeholder{ color:rgba(246,245,243,.50); }
+    .fineprint{ margin-top:10px; font-size:12px; color:var(--muted2); max-width:90ch; }
+    .fineprint a{ text-decoration:underline; text-underline-offset:3px; }
+
+    .footer{
+      margin-top:34px; padding-top:18px;
+      color:var(--muted2); font-size:12px;
+      border-top:1px solid rgba(246,245,243,.10);
+      display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between;
+    }
+    .footer a{ color:var(--muted); text-decoration:underline; text-underline-offset:3px; }
+
+    .cookie{
+      position:fixed; left:16px; right:16px; bottom:16px; max-width:980px; margin:0 auto;
+      border-radius:18px;
+      background:rgba(0,78,91,.88);
+      border:1px solid rgba(180,221,227,.22);
+      box-shadow:0 18px 60px rgba(0,0,0,.35);
+      padding:12px 14px;
+      display:none;
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+    }
+    .cookie .row{ display:flex; gap:12px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; }
+    .cookie p{ margin:0; color:rgba(246,245,243,.86); font-size:13px; max-width:72ch; }
+    .cookie .actions{ display:flex; gap:10px; align-items:center; }
+    .cookie .link{ color:rgba(246,245,243,.92); text-decoration:underline; text-underline-offset:3px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="logo"><span class="dot" aria-hidden="true"></span> STATE</div>
+      <span class="pill">Pre-Launch · <b>Interesse vormerken</b></span>
+    </div>
+
+    <section class="hero" id="top">
+      <div>
+        <h1>Mehr Fokus. Besser schlafen. Abends wirklich abschalten.</h1>
+        <p class="sub">Ein personalisierter Trainingsplan für dein Nervensystem. Wenige Minuten am Tag. Spürbare Wirkung im Alltag.</p>
+        <p class="tagline">👉 <em>Individuell.</em> <em>Funktional.</em> <em>Ohne Methodenchaos.</em></p>
+
+        <p class="sub">Du hast wenig Zeit. Dein Kopf ist permanent eingeschaltet. Und du willst Dinge, die <strong>dir wirklich helfen</strong> – nicht erklären, motivieren oder beschäftigen.</p>
+        <p class="sub">STATE erstellt einen personalisierten Plan, der dir hilft, fokussierter zu arbeiten, abends runterzufahren und wieder in ein stabiles Grundniveau zu finden.</p>
+        <p class="sub">Kein Content-Hub. Keine Mediathek. Kein „probier mal diese Übung“.<br/><strong>Ein Plan. Für dich. Für deinen Alltag.</strong></p>
+
+        <div class="card" style="box-shadow:none; margin-top:16px;">
+          <h3 style="margin:0 0 8px;">Interesse vormerken</h3>
+          <p class="sub" style="margin:0 0 10px; max-width:72ch;">STATE ist vor dem Launch. Trag dich ein und du bekommst ein Update, sobald der erste Zugang möglich ist.</p>
+
+          <!-- Replace action="#" with your endpoint later (e.g. /api/subscribe on Vercel) -->
+          <form action="#" method="post">
+            <div class="formRow">
+              <input class="input" type="email" name="email" placeholder="Deine E-Mail-Adresse" required />
+              <button class="btn btnPrimary" type="submit">Eintragen</button>
+            </div>
+            <div class="fineprint">
+              Mit dem Eintragen bestätigst du, dass du Updates zu STATE erhalten möchtest. Du kannst dich jederzeit abmelden.
+              Mehr Infos in der <a href="./datenschutz.html">Datenschutzerklärung</a>.
+            </div>
+          </form>
+        </div>
+
+        <div class="ctaRow" style="margin-top:14px;">
+          <a class="btn" href="#was-ist-state">Was ist STATE?</a>
+          <a class="btn" href="#fuer-wen">Für wen?</a>
+        </div>
+        <div class="note">Kein Spam. Kein Druck. Nur ein Update, wenn STATE verfügbar ist.</div>
+      </div>
+
+      <aside class="card mini" aria-label="Kurzüberblick">
+        <h3>In 10 Sekunden verstanden</h3>
+        <div class="metricGrid">
+          <div class="metric"><div class="k">Was ist es?</div><div class="v">Dein Nervensystem-Plan</div></div>
+          <div class="metric"><div class="k">Für wen?</div><div class="v">High mental load</div></div>
+          <div class="metric"><div class="k">Zeit pro Tag</div><div class="v">2–10 Minuten</div></div>
+          <div class="metric"><div class="k">Ergebnis</div><div class="v">Fokus · Schlaf · Abschalten</div></div>
+        </div>
+        <hr class="divider" />
+        <div class="metric" style="background: rgba(0,151,178,.10); border-color: rgba(0,151,178,.22);">
+          <div class="k">Basis</div>
+          <div class="v">Atem · Polyvagal · evidenzbasierte Regulation</div>
+        </div>
+      </aside>
+    </section>
+
+    <hr class="divider" />
+
+    <section class="section" id="was-ist-state">
+      <h2>Was ist STATE?</h2>
+      <p>STATE ist ein personalisierter Trainingsplan für dein Nervensystem, der Menschen mit hoher mentaler Belastung dabei unterstützt, <strong>klarer zu denken</strong>, <strong>schneller abzuschalten</strong>, <strong>besser zu schlafen</strong> und <strong>dauerhaft leistungsfähig</strong> zu bleiben – ohne täglich Zeit in Tools, Methoden oder Entscheidungen zu investieren.</p>
+      <p>STATE basiert auf einer Kombination <strong>wissenschaftlich fundierter Ansätze</strong> – u. a. aus <strong>Atemarbeit</strong>, <strong>Nervensystemforschung</strong> und <strong>Polyvagaltheorie</strong> – übersetzt in konkrete, alltagstaugliche Umsetzung.</p>
+      <p class="quote">Im Dschungel all der Möglichkeiten geht es nicht mehr darum, etwas zu wissen – sondern darum, zu wissen, was dir gerade wirklich hilft.</p>
+    </section>
+
+    <section class="section">
+      <h2>Warum sich dein System gerade so anfühlt, wie es sich anfühlt</h2>
+      <p><strong>Es ist nicht nur der Stress.</strong> Es ist die permanente mentale Aktivierung.</p>
+      <p>Was mache ich heute? Was passt jetzt? Wie lange? Morgens oder abends? Bringt das bei mir überhaupt etwas?</p>
+      <p>Du hast Apps probiert. Meditation. Atemübungen. Journaling. YouTube. Aber funktioniert hat es nie. Nicht, weil die Ansätze falsch sind – sondern weil sie nicht auf dich zugeschnitten waren und nicht in deinen Alltag gepasst haben.</p>
+      <p>Und weil du dafür Zeit, Aufmerksamkeit und Geduld aufbringen musstest, die du schlicht nicht mehr hast.</p>
+    </section>
+
+    <section class="section">
+      <h2>Was du eigentlich willst</h2>
+      <p>Du willst keine neue Methode. Du willst ein <strong>Ergebnis</strong>:</p>
+      <ul>
+        <li>einen klaren Kopf</li><li>Fokus bei der Arbeit</li><li>abends wirklich abschalten</li>
+        <li>besser schlafen</li><li>nicht mehr bis 1 Uhr wach liegen</li><li>wieder das Gefühl haben, in Kontrolle zu sein</li>
+      </ul>
+      <p><strong>Nicht irgendwann. Jetzt. Im Alltag.</strong></p>
+    </section>
+
+    <section class="section">
+      <h2>Wie STATE funktioniert (ohne Umwege)</h2>
+      <p>Du beantwortest wenige, gezielte Fragen – z. B.:</p>
+      <div class="grid2">
+        <div class="card" style="box-shadow:none;">
+          <h3>Was ist dein aktuelles Ziel?</h3>
+          <ul><li>Mehr Fokus & mentale Klarheit</li><li>Runterfahren & innere Ruhe</li><li>Besser schlafen & regenerieren</li><li>Mehr Energie & bessere Performance</li></ul>
+        </div>
+        <div class="card" style="box-shadow:none;">
+          <h3>Plus: Kontext, der zählt</h3>
+          <ul><li>dein Zeitbudget</li><li>dein aktueller Zustand</li></ul>
+        </div>
+      </div>
+      <p style="margin-top:12px;">Auf dieser Basis erstellt STATE <strong>deinen individuellen Plan</strong>. Kein One-Size-Fits-All. Kein starres Schema. Sondern ein Plan, der sich anpasst, wenn sich dein System verändert.</p>
+    </section>
+
+    <section class="section">
+      <h2>Wenige Minuten. Echter Unterschied.</h2>
+      <p>STATE funktioniert nicht, weil du diszipliniert bist. Sondern weil es <strong>einfach</strong> ist.</p>
+      <ul><li><strong>2–10 Minuten pro Tag</strong></li><li>klare Struktur</li><li>kein Rätseln</li><li>kein Optimieren</li><li>kein Durchhalten aus Willenskraft</li></ul>
+      <p style="margin-top:10px;">Du öffnest STATE. Du siehst: <strong>Das ist heute dran.</strong> Du machst es. Und gehst weiter. Genau so entsteht Veränderung, die sich in dein Leben integriert – statt es noch voller zu machen.</p>
+    </section>
+
+    <section class="section">
+      <h2>Was sich durch STATE verändert</h2>
+      <p>Nicht auf einer Hochglanz-Grafik. Sondern im echten Leben.</p>
+      <ul><li>weniger Gedankenkreisen</li><li>klarerer Fokus bei der Arbeit</li><li>abends schneller runterkommen</li><li>besser einschlafen</li><li>ein ruhigeres Grundniveau</li><li>das Gefühl, wieder geführt statt getrieben zu sein</li></ul>
+      <p style="margin-top:10px;">STATE verspricht keine Wunder. STATE schafft Bedingungen, unter denen dein System wieder zuverlässig arbeiten kann.</p>
+    </section>
+
+    <section class="section faq">
+      <h2>Typische Gedanken – und ehrliche Antworten</h2>
+      <details><summary>„Funktioniert das wirklich bei mir?“</summary><div class="a">Ja – weil der Plan für dich gemacht ist. Basierend auf deinem Ziel, deiner Zeit und deinem aktuellen Status.</div></details>
+      <details><summary>„Ich habe keine Zeit für noch eine App.“</summary><div class="a">STATE braucht weniger Zeit als jede Meditations- oder Atem-App. 2–10 Minuten. Punkt.</div></details>
+      <details><summary>„Was, wenn ich es wieder nicht durchziehe?“</summary><div class="a">STATE ist so gebaut, dass du nicht motiviert sein musst. Du setzt um – der Plan übernimmt den Rest.</div></details>
+      <details><summary>„Ist das wieder so Wellness-Zeug?“</summary><div class="a">Nein. STATE ist funktional. Wie ein Trainingsplan – nur für dein Nervensystem.</div></details>
+    </section>
+
+    <section class="section" id="fuer-wen">
+      <h2>Für wen STATE gedacht ist</h2>
+      <div class="grid2">
+        <div class="card" style="box-shadow:none;">
+          <h3>STATE ist für Menschen, die:</h3>
+          <ul><li>viel Verantwortung tragen</li><li>leistungsfähig bleiben wollen</li><li>merken, dass es so nicht ewig weitergeht</li><li>keine Lust mehr auf Tools, Methoden und Selbstoptimierungsroutinen haben</li><li>einen klaren, individuellen Plan wollen</li></ul>
+        </div>
+        <div class="card" style="box-shadow:none;">
+          <h3>STATE ist nicht für dich, wenn du:</h3>
+          <ul><li>schnelle Heilung erwartest</li><li>spirituelle Selbsterfahrung suchst</li><li>Motivation brauchst statt Struktur</li><li>ein fixes Rezept ohne Anpassung willst</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section card" style="margin-top:10px;">
+      <h2>Aktueller Stand</h2>
+      <p>STATE befindet sich aktuell vor dem Launch. Diese Seite ist für Menschen, die sich hier wiedererkennen und wissen: <strong>Wenn das live ist, will ich das nutzen.</strong></p>
+      <div class="ctaRow">
+        <a class="btn btnPrimary" href="#top">Zur Eintragung</a>
+        <a class="btn" href="#top">Nach oben</a>
+      </div>
+      <div class="note">MVP: Wir sammeln ausschließlich E-Mail-Adressen.</div>
+    </section>
+
+    <div class="footer">
+      <div>© <span id="y"></span> STATE · Pre-Launch</div>
+      <div>
+        <a href="./impressum.html">Impressum</a> ·
+        <a href="./datenschutz.html">Datenschutz</a> ·
+        <a href="./cookies.html">Cookies</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="cookie" id="cookie">
+    <div class="row">
+      <p>Diese Website verwendet nur technisch notwendige Einstellungen, um diese Cookie-Notiz zu speichern. Keine Tracking- oder Marketing-Cookies. Details: <a class="link" href="./cookies.html">Cookies</a>.</p>
+      <div class="actions"><button class="btn btnPrimary" id="cookieOk" type="button">Okay</button></div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+    const KEY="state_cookie_notice_v1";
+    const el=document.getElementById("cookie");
+    const ok=document.getElementById("cookieOk");
+    try{ if(!localStorage.getItem(KEY)){ el.style.display="block"; }
+      ok.addEventListener("click",()=>{ localStorage.setItem(KEY,"1"); el.style.display="none"; });
+    }catch(e){ el.style.display="block"; ok.addEventListener("click",()=>{ el.style.display="none"; }); }
+  </script>
+</body>
+</html>
