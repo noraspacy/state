@@ -49,6 +49,7 @@
     a{ color:inherit; text-decoration:none; }
     .wrap{ max-width:var(--max); margin:0 auto; padding:28px 20px 84px; }
 
+    /* Topbar */
     .topbar{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 0 18px; }
     .logo{ display:flex; align-items:center; gap:10px; font-weight:760; letter-spacing:.8px; }
     .dot{ width:12px; height:12px; border-radius:999px; background:var(--brand); box-shadow:0 0 0 6px rgba(0,151,178,.12); }
@@ -61,24 +62,80 @@
       font-size:13px;
       backdrop-filter:blur(10px);
       -webkit-backdrop-filter:blur(10px);
+      white-space:nowrap;
     }
     .pill b{ color:var(--text); font-weight:650; }
 
+    /* ===== Above-the-fold: ONLY text + phone ===== */
     .hero{
-      padding:18px 0 20px;
       display:grid;
-      grid-template-columns:1.15fr .85fr;
-      gap:26px;
-      align-items:start;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      align-items: center;
+      padding: 10px 0 18px;
+      min-height: calc(100svh - 86px); /* mobile safe viewport */
     }
-    @media (max-width:920px){ .hero{ grid-template-columns:1fr; } }
+    @media (min-width: 920px){
+      .hero{
+        grid-template-columns: 1.05fr .95fr;
+        gap: 32px;
+        padding: 18px 0 22px;
+      }
+    }
 
-    h1{ font-size:clamp(34px,4.8vw,58px); line-height:1.05; margin:10px 0 12px; letter-spacing:-.7px; }
-    .sub{ font-size:clamp(16px,1.6vw,18px); color:var(--muted); max-width:60ch; margin:0 0 14px; }
-    .tagline{ color:var(--muted); margin:12px 0 18px; font-size:15px; }
-    .tagline em{ color:var(--text); font-style:normal; font-weight:650; }
+    .kicker{
+      font-weight: 760;
+      letter-spacing: .9px;
+      opacity: .95;
+      margin: 0 0 14px;
+    }
 
-    .ctaRow{ display:flex; flex-wrap:wrap; gap:12px; margin-top:18px; }
+    .atfTitle{
+      font-size: clamp(30px, 7.2vw, 56px);
+      line-height: 1.05;
+      margin: 0 0 12px;
+      letter-spacing: -0.7px;
+    }
+
+    .atfSub{
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: clamp(15px, 4.2vw, 18px);
+      max-width: 42ch;
+    }
+
+    .atfTag{
+      margin: 0;
+      font-size: clamp(14px, 3.8vw, 16px);
+      color: var(--text);
+      opacity: .92;
+      font-weight: 650;
+    }
+
+    .heroRight{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      order: 2; /* on mobile, image below text */
+    }
+    @media (min-width: 920px){
+      .heroRight{ order: 0; }
+    }
+
+    .phoneMock{
+      width: min(360px, 82vw);
+      height: auto;
+      filter: drop-shadow(0 30px 80px rgba(0,0,0,.45));
+      transform: translateY(6px);
+    }
+    @media (min-width: 920px){
+      .phoneMock{
+        width: 420px;
+        transform: translateY(10px);
+      }
+    }
+
+    /* Existing styles (unchanged) */
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
       padding:12px 16px; border-radius:14px;
@@ -95,6 +152,7 @@
       box-shadow:0 16px 46px rgba(0,151,178,.22);
     }
     .btn:focus{ outline:none; box-shadow:0 0 0 4px var(--ring); }
+
     .note{ font-size:13px; color:var(--muted2); margin-top:10px; }
 
     .card{
@@ -107,13 +165,6 @@
       -webkit-backdrop-filter:blur(12px);
     }
     .card h3{ margin:0 0 10px; font-size:15px; letter-spacing:.2px; color:var(--text); }
-    .mini{ display:flex; flex-direction:column; gap:14px; }
-
-    .metricGrid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-    @media (max-width:520px){ .metricGrid{ grid-template-columns:1fr; } }
-    .metric{ padding:12px; border-radius:16px; background:rgba(246,245,243,.06); border:1px solid rgba(246,245,243,.10); }
-    .metric .k{ font-size:12px; color:var(--muted2); margin-bottom:2px; }
-    .metric .v{ font-size:16px; font-weight:760; letter-spacing:.1px; }
 
     .divider{ height:1px; margin:22px 0; background:linear-gradient(90deg, transparent, rgba(246,245,243,.14), transparent); border:0; }
 
@@ -174,6 +225,7 @@
     .cookie .link{ color:rgba(246,245,243,.92); text-decoration:underline; text-underline-offset:3px; }
   </style>
 </head>
+
 <body>
   <div class="wrap">
     <div class="topbar">
@@ -181,58 +233,29 @@
       <span class="pill">Pre-Launch · <b>Interesse vormerken</b></span>
     </div>
 
+    <!-- ABOVE THE FOLD (only this text + phone) -->
     <section class="hero" id="top">
-      <div>
-        <h1>Mehr Fokus. Besser schlafen. Abends wirklich abschalten.</h1>
-        <p class="sub">Ein personalisierter Trainingsplan für dein Nervensystem. Wenige Minuten am Tag. Spürbare Wirkung im Alltag.</p>
-        <p class="tagline">👉 <em>Individuell.</em> <em>Funktional.</em> <em>Ohne Methodenchaos.</em></p>
+      <div class="heroLeft">
+        <div class="kicker">STATE</div>
 
-        <p class="sub">Du hast wenig Zeit. Dein Kopf ist permanent eingeschaltet. Und du willst Dinge, die <strong>dir wirklich helfen</strong> – nicht erklären, motivieren oder beschäftigen.</p>
-        <p class="sub">STATE erstellt einen personalisierten Plan, der dir hilft, fokussierter zu arbeiten, abends runterzufahren und wieder in ein stabiles Grundniveau zu finden.</p>
-        <p class="sub">Kein Content-Hub. Keine Mediathek. Kein „probier mal diese Übung“.<br/><strong>Ein Plan. Für dich. Für deinen Alltag.</strong></p>
+        <h1 class="atfTitle">Mehr Fokus. Besser schlafen. Abends wirklich abschalten.</h1>
 
-        <div class="card" style="box-shadow:none; margin-top:16px;">
-          <h3 style="margin:0 0 8px;">Interesse vormerken</h3>
-          <p class="sub" style="margin:0 0 10px; max-width:72ch;">STATE ist vor dem Launch. Trag dich ein und du bekommst ein Update, sobald der erste Zugang möglich ist.</p>
+        <p class="atfSub">
+          Ein personalisierter Trainingsplan für dein Nervensystem.<br/>
+          Wenige Minuten am Tag. Spürbare Wirkung im Alltag.
+        </p>
 
-          <!-- Replace action="#" with your endpoint later (e.g. /api/subscribe on Vercel) -->
-          <form action="#" method="post">
-            <div class="formRow">
-              <input class="input" type="email" name="email" placeholder="Deine E-Mail-Adresse" required />
-              <button class="btn btnPrimary" type="submit">Eintragen</button>
-            </div>
-            <div class="fineprint">
-              Mit dem Eintragen bestätigst du, dass du Updates zu STATE erhalten möchtest. Du kannst dich jederzeit abmelden.
-              Mehr Infos in der <a href="./datenschutz.html">Datenschutzerklärung</a>.
-            </div>
-          </form>
-        </div>
-
-        <div class="ctaRow" style="margin-top:14px;">
-          <a class="btn" href="#was-ist-state">Was ist STATE?</a>
-          <a class="btn" href="#fuer-wen">Für wen?</a>
-        </div>
-        <div class="note">Kein Spam. Kein Druck. Nur ein Update, wenn STATE verfügbar ist.</div>
+        <p class="atfTag">👉 Individuell. Funktional. Ohne Methodenchaos.</p>
       </div>
 
-      <aside class="card mini" aria-label="Kurzüberblick">
-        <h3>In 10 Sekunden verstanden</h3>
-        <div class="metricGrid">
-          <div class="metric"><div class="k">Was ist es?</div><div class="v">Dein Nervensystem-Plan</div></div>
-          <div class="metric"><div class="k">Für wen?</div><div class="v">High mental load</div></div>
-          <div class="metric"><div class="k">Zeit pro Tag</div><div class="v">2–10 Minuten</div></div>
-          <div class="metric"><div class="k">Ergebnis</div><div class="v">Fokus · Schlaf · Abschalten</div></div>
-        </div>
-        <hr class="divider" />
-        <div class="metric" style="background: rgba(0,151,178,.10); border-color: rgba(0,151,178,.22);">
-          <div class="k">Basis</div>
-          <div class="v">Atem · Polyvagal · evidenzbasierte Regulation</div>
-        </div>
-      </aside>
+      <div class="heroRight" aria-label="STATE App Preview">
+        <img class="phoneMock" src="./state-phone.png" alt="STATE App Vorschau auf einem Smartphone" />
+      </div>
     </section>
 
     <hr class="divider" />
 
+    <!-- Rest der Seite (vorerst unverändert) -->
     <section class="section" id="was-ist-state">
       <h2>Was ist STATE?</h2>
       <p>STATE ist ein personalisierter Trainingsplan für dein Nervensystem, der Menschen mit hoher mentaler Belastung dabei unterstützt, <strong>klarer zu denken</strong>, <strong>schneller abzuschalten</strong>, <strong>besser zu schlafen</strong> und <strong>dauerhaft leistungsfähig</strong> zu bleiben – ohne täglich Zeit in Tools, Methoden oder Entscheidungen zu investieren.</p>
@@ -313,11 +336,7 @@
     <section class="section card" style="margin-top:10px;">
       <h2>Aktueller Stand</h2>
       <p>STATE befindet sich aktuell vor dem Launch. Diese Seite ist für Menschen, die sich hier wiedererkennen und wissen: <strong>Wenn das live ist, will ich das nutzen.</strong></p>
-      <div class="ctaRow">
-        <a class="btn btnPrimary" href="#top">Zur Eintragung</a>
-        <a class="btn" href="#top">Nach oben</a>
-      </div>
-      <div class="note">MVP: Wir sammeln ausschließlich E-Mail-Adressen.</div>
+      <div class="note">MVP: Wir sammeln ausschließlich E-Mail-Adressen (Formular kommt als nächstes wieder rein – unterhalb des Above-the-fold).</div>
     </section>
 
     <div class="footer">
@@ -348,3 +367,4 @@
   </script>
 </body>
 </html>
+
