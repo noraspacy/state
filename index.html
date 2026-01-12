@@ -27,6 +27,7 @@
       --max:1040px;
       --border: rgba(246,245,243,.12);
       --glass: linear-gradient(180deg, rgba(246,245,243,.09), rgba(246,245,243,.05));
+      --gutter: 20px;
     }
 
     /* Fonts (GDPR-safe tip): self-host Montserrat instead of loading from Google Fonts. */
@@ -50,7 +51,7 @@
       letter-spacing:.2px;
     }
     a{ color:inherit; text-decoration:none; }
-    .wrap{ max-width:var(--max); margin:0 auto; padding:28px 20px 84px; }
+    .wrap{ max-width:var(--max); margin:0 auto; padding:28px var(--gutter) 84px; }
 
     /* Topbar */
     .topbar{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 0 18px; }
@@ -174,9 +175,9 @@
       letter-spacing:-.2px;
     }
 
-    /* Visual "image slots" */
+    /* Visual image blocks */
     .media{
-      border-radius: calc(var(--radius) + 6px);
+      border-radius: calc(var(--radius) + 8px);
       border: 1px solid rgba(180,221,227,.18);
       background:
         radial-gradient(800px 300px at 10% 10%, rgba(0,151,178,.18), transparent 55%),
@@ -184,14 +185,40 @@
         rgba(246,245,243,.03);
       overflow:hidden;
       box-shadow: var(--shadowSoft);
+      position:relative;
     }
     .media img{
       width:100%;
       height:auto;
       display:block;
     }
-    .media.placeholder{
-      min-height: 220px;
+    .media::after{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(900px 380px at 30% 0%, rgba(0,151,178,.14), transparent 60%);
+      pointer-events:none;
+      mix-blend-mode: screen;
+      opacity:.55;
+    }
+
+    /* Full-bleed editorial separator image */
+    .bleed{
+      width: calc(100% + (var(--gutter) * 2));
+      margin-left: calc(var(--gutter) * -1);
+      margin-right: calc(var(--gutter) * -1);
+      margin-top: 8px;
+      margin-bottom: 8px;
+    }
+    .bleed .media{
+      border-radius: 26px;
+    }
+    @media (min-width: 920px){
+      .bleed .media{ border-radius: 28px; }
+    }
+
+    /* Placeholder style (until images exist) */
+    .placeholder{
+      min-height: 240px;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -227,15 +254,14 @@
     .grid2{ display:grid; grid-template-columns: 1fr; gap:16px; align-items:start; }
     @media (min-width: 920px){ .grid2{ grid-template-columns: 1fr 1fr; } }
 
-    /* Copy blocks */
+    /* Copy blocks (keep line breaks) */
     .lead{
       font-size: clamp(16px, 4.2vw, 18px);
       color: var(--muted);
       max-width: 78ch;
       margin: 0;
-      white-space: pre-line; /* respects line breaks */
+      white-space: pre-line;
     }
-
     .copy{
       color: var(--muted);
       max-width: 78ch;
@@ -257,9 +283,8 @@
       opacity: .90;
     }
     .listBox li{ margin:8px 0; }
-    .listBox strong{ color: var(--text); }
 
-    /* CTA block */
+    /* CTA line */
     .ctaLine{
       margin-top: 8px;
       display:flex;
@@ -273,6 +298,54 @@
     .faq summary{ cursor:pointer; font-weight:720; color:var(--text); list-style:none; }
     .faq summary::-webkit-details-marker{ display:none; }
     .faq .a{ color:var(--muted); margin-top:10px; white-space:pre-line; }
+
+    /* About section specifics */
+    .aboutGrid{ display:grid; grid-template-columns: 1fr; gap:16px; align-items:center; }
+    @media (min-width: 920px){ .aboutGrid{ grid-template-columns: .9fr 1.1fr; } }
+    .aboutName{
+      font-size: 18px;
+      font-weight: 780;
+      letter-spacing: -.2px;
+      margin: 0 0 6px;
+    }
+    .aboutRole{
+      margin: 0 0 12px;
+      color: var(--muted2);
+      font-size: 13px;
+      letter-spacing: .2px;
+    }
+    .aboutText{
+      margin: 0;
+      color: var(--muted);
+      white-space: pre-line;
+      max-width: 78ch;
+    }
+    .badgeRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 12px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      background: rgba(246,245,243,.05);
+      border: 1px solid rgba(246,245,243,.10);
+      color: rgba(246,245,243,.82);
+      font-size: 12px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .badge i{
+      width:8px; height:8px;
+      border-radius:999px;
+      background: rgba(0,151,178,.85);
+      box-shadow: 0 0 0 5px rgba(0,151,178,.14);
+      display:inline-block;
+    }
 
     /* Footer */
     .footer{
@@ -321,7 +394,7 @@
           Wenige Minuten am Tag. Spürbare Wirkung im Alltag.
         </p>
 
-        <p class="atfTag">Individuell. Funktional. Ohne Methodenchaos.</p>
+        <p class="atfTag">👉 Individuell. Funktional. Ohne Methodenchaos.</p>
       </div>
 
       <div class="heroRight" aria-label="STATE App Preview">
@@ -348,7 +421,6 @@ und wieder in ein stabiles Grundniveau zu finden.
 
 Kein Content-Hub. 
 Keine Mediathek. 
-Keine Mediathek. 
 Kein „probier mal diese Übung“.
 
 Ein Plan. Für dich. Für deinen Alltag.</p>
@@ -363,13 +435,24 @@ Ein Plan. Für dich. Für deinen Alltag.</p>
           <div class="phInner">
             <div class="phLabel">Bildplatzhalter</div>
             <div class="phTitle">Visuelles Motiv: „High mental load im Alltag“</div>
-            <div class="phHint">Ein hochwertiges, ruhiges Visual (z. B. Person am Laptop abends, Licht/Shadow, Fokus/Overload Stimmung). Dateiname: <b>img-high-mental-load.webp</b></div>
+            <div class="phHint">Dateiname: <b>img-high-mental-load.webp</b></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION: Was ist STATE? (with list box + image slot) -->
+    <!-- Editorial separator (full-bleed image slot) -->
+    <div class="bleed" aria-label="Editorial Separator">
+      <div class="media placeholder">
+        <div class="phInner">
+          <div class="phLabel">Editorial Separator</div>
+          <div class="phTitle">Breites Bild als Atemraum zwischen Abschnitten</div>
+          <div class="phHint">Dateiname: <b>img-separator-1.webp</b></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION: Was ist STATE? -->
     <section class="section" id="was-ist-state">
       <div class="grid2">
         <div class="stack">
@@ -404,13 +487,13 @@ Sondern wissen, was DIR jetzt wirklich hilft.</p>
           <div class="phInner">
             <div class="phLabel">Bildplatzhalter</div>
             <div class="phTitle">Visuelles Motiv: „Wissenschaftlich fundiert, funktional“</div>
-            <div class="phHint">Abstraktes, hochwertiges Visual (z. B. simple Flow-Linien, Nervensystem/Signal, Diagramm-Ästhetik). Dateiname: <b>img-science-functional.webp</b></div>
+            <div class="phHint">Dateiname: <b>img-science-functional.webp</b></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION: Warum du dich so fühlst (with image slot) -->
+    <!-- SECTION: Warum du dich so fühlst -->
     <section class="section" id="warum">
       <div class="grid2">
         <!-- Image slot 3 -->
@@ -418,7 +501,7 @@ Sondern wissen, was DIR jetzt wirklich hilft.</p>
           <div class="phInner">
             <div class="phLabel">Bildplatzhalter</div>
             <div class="phTitle">Visuelles Motiv: „Permanente Aktivierung“</div>
-            <div class="phHint">Ruhiges Visual mit „Noise“/Gedanken/Multiple Tabs (abstrakt oder Lifestyle). Dateiname: <b>img-mental-activation.webp</b></div>
+            <div class="phHint">Dateiname: <b>img-mental-activation.webp</b></div>
           </div>
         </div>
 
@@ -446,7 +529,18 @@ aufbringen musstest, die du schlicht nicht mehr hast.</p>
       </div>
     </section>
 
-    <!-- SECTION: Was du eigentlich willst (list box + image slot) -->
+    <!-- Editorial separator 2 -->
+    <div class="bleed" aria-label="Editorial Separator">
+      <div class="media placeholder">
+        <div class="phInner">
+          <div class="phLabel">Editorial Separator</div>
+          <div class="phTitle">Breites Bild als Ruhepunkt</div>
+          <div class="phHint">Dateiname: <b>img-separator-2.webp</b></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION: Was du eigentlich willst -->
     <section class="section" id="was-du-willst">
       <div class="grid2">
         <div class="stack">
@@ -475,13 +569,13 @@ Jetzt. Im Alltag.</strong></p>
           <div class="phInner">
             <div class="phLabel">Bildplatzhalter</div>
             <div class="phTitle">Visuelles Motiv: „Klarheit & Abschalten“</div>
-            <div class="phHint">Z. B. ruhige Abendstimmung, Licht, Schlaf, Klarheit. Dateiname: <b>img-clarity-sleep.webp</b></div>
+            <div class="phHint">Dateiname: <b>img-clarity-sleep.webp</b></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION: Wie STATE funktioniert (list box + required plan image slot) -->
+    <!-- SECTION: Wie STATE funktioniert -->
     <section class="section" id="wie">
       <h2>Wie STATE funktioniert (ohne Umwege)</h2>
 
@@ -511,7 +605,7 @@ Jetzt. Im Alltag.</strong></p>
             </div>
           </div>
 
-          <p class="copy">Auf dieser Basis erstellt STATE deinen individuellen Plan.
+          <p class="copy">Auf dieser Basis erstellt STATE deinen individuellen Plan. (in diesem abschnitt fügen wir ein bild davon ein, wie ein plan aussehen könnte, plane hier ein bild ein)
 Kein One-Size-Fits-All. 
 Kein starres Schema. 
 Sondern ein Plan, der sich anpasst, 
@@ -523,13 +617,13 @@ wenn du es brauchst.</p>
           <div class="phInner">
             <div class="phLabel">Bildplatzhalter</div>
             <div class="phTitle">Visuelles Motiv: „So könnte dein Plan aussehen“</div>
-            <div class="phHint">Ein UI-Screenshot/Mockup (Card-Layout, Tagesplan, 2–10 Min, klare Struktur). Dateiname: <b>img-plan-preview.webp</b></div>
+            <div class="phHint">Dateiname: <b>img-plan-preview.webp</b></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION: Wenige Minuten (list box + image slot) -->
+    <!-- SECTION: Wenige Minuten -->
     <section class="section" id="wenige-minuten">
       <div class="grid2">
         <!-- Image slot 6 -->
@@ -537,7 +631,7 @@ wenn du es brauchst.</p>
           <div class="phInner">
             <div class="phLabel">Bildplatzhalter</div>
             <div class="phTitle">Visuelles Motiv: „2–10 Minuten / Mikro-Intervention“</div>
-            <div class="phHint">Minimalistisches Visual (Timer/Progress/Heute dran). Dateiname: <b>img-2-10-min.webp</b></div>
+            <div class="phHint">Dateiname: <b>img-2-10-min.webp</b></div>
           </div>
         </div>
 
@@ -568,7 +662,7 @@ die sich in dein Leben integriert, statt es noch voller zu machen.</p>
       </div>
     </section>
 
-    <!-- SECTION: Was sich verändert (list box + image slot) -->
+    <!-- SECTION: Was sich verändert -->
     <section class="section" id="veraenderung">
       <div class="grid2">
         <div class="stack">
@@ -598,13 +692,52 @@ unter denen dein System wieder zuverlässig arbeiten kann.</p>
           <div class="phInner">
             <div class="phLabel">Bildplatzhalter</div>
             <div class="phTitle">Visuelles Motiv: „Ruhigeres Grundniveau“</div>
-            <div class="phHint">Z. B. ruhige Szene, Körper/Atmung subtil, Fokus. Dateiname: <b>img-stable-baseline.webp</b></div>
+            <div class="phHint">Dateiname: <b>img-stable-baseline.webp</b></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FAQ (text updated per your version) -->
+    <!-- ABOUT (new) -->
+    <section class="section" id="ueber-mich">
+      <div class="card soft">
+        <div class="aboutGrid">
+          <!-- About image slot -->
+          <div class="media placeholder" aria-label="Bildplatzhalter – Über mich Portrait">
+            <div class="phInner">
+              <div class="phLabel">Über mich</div>
+              <div class="phTitle">Portrait / Creator Visual</div>
+              <div class="phHint">Ein hochwertiges, natürliches Portrait (ruhig, klar, modern). Dateiname: <b>img-about-nora.webp</b></div>
+            </div>
+          </div>
+
+          <div class="stack">
+            <h2>Über mich</h2>
+            <p class="aboutName">Nora Becker</p>
+            <p class="aboutRole">Konzept · Nervensystemarbeit · Breathwork · Struktur</p>
+
+            <p class="aboutText">STATE entsteht nicht aus „noch einer Methode“, sondern aus der Frage:
+Was braucht ein Nervensystem im echten Leben – wenn Zeit knapp ist, der Kopf nicht aufhört und du trotzdem funktionieren willst?
+
+Ich arbeite an der Schnittstelle aus Atemarbeit, Nervensystemregulation und alltagstauglicher Umsetzung.
+STATE ist mein Versuch, das Methodenchaos zu beenden – und dir einen Plan zu geben, der dich entlastet, statt dich zu beschäftigen.</p>
+
+            <div class="badgeRow" aria-label="Trust badges">
+              <span class="badge"><i aria-hidden="true"></i>Atemarbeit</span>
+              <span class="badge"><i aria-hidden="true"></i>Polyvagal</span>
+              <span class="badge"><i aria-hidden="true"></i>Alltagstauglich</span>
+              <span class="badge"><i aria-hidden="true"></i>Struktur statt Overload</span>
+            </div>
+
+            <div class="ctaLine" style="margin-top:14px;">
+              <a class="btn btnPrimary" href="#interesse">👉 Interesse vormerken</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
     <section class="section faq" id="faq">
       <h2>Typische Gedanken und ehrliche Antworten</h2>
 
@@ -634,7 +767,7 @@ Wie ein Trainingsplan – nur für dein Nervensystem.</div>
       </details>
     </section>
 
-    <!-- SECTION: Für wen (list boxes + image slot) -->
+    <!-- SECTION: Für wen -->
     <section class="section" id="fuer-wen">
       <h2>Für wen STATE gedacht ist</h2>
 
@@ -666,11 +799,13 @@ Wie ein Trainingsplan – nur für dein Nervensystem.</div>
       </div>
 
       <!-- Image slot 8 -->
-      <div class="media placeholder" style="margin-top:16px;" aria-label="Bildplatzhalter – Zielgruppe / Verantwortung">
-        <div class="phInner">
-          <div class="phLabel">Bildplatzhalter</div>
-          <div class="phTitle">Visuelles Motiv: „Verantwortung & Leistung, ohne auszubrennen“</div>
-          <div class="phHint">Optionales breites Visual als Abschnitts-Separator. Dateiname: <b>img-responsibility.webp</b></div>
+      <div class="bleed" aria-label="Editorial Separator">
+        <div class="media placeholder" style="margin-top:16px;">
+          <div class="phInner">
+            <div class="phLabel">Editorial Separator</div>
+            <div class="phTitle">Breites Bild als Abschnittsabschluss</div>
+            <div class="phHint">Dateiname: <b>img-separator-3.webp</b></div>
+          </div>
         </div>
       </div>
     </section>
