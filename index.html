@@ -20,17 +20,21 @@
       --brand: var(--c1);
       --brand2:#27a9c0;
       --brandInk:#041b20;
+
       --ring: rgba(0,151,178,.42);
       --radius:20px;
       --shadow:0 18px 60px rgba(0,0,0,.38);
       --shadowSoft:0 14px 44px rgba(0,0,0,.26);
+
       --max:1040px;
       --border: rgba(246,245,243,.12);
       --glass: linear-gradient(180deg, rgba(246,245,243,.09), rgba(246,245,243,.05));
       --gutter: 20px;
+
+      --space: 28px;
     }
 
-    /* Fonts (GDPR-safe tip): self-host Montserrat instead of loading from Google Fonts. */
+    /* Fonts (GDPR-safe tip): self-host Montserrat + DejaVu Serif */
     /* If you add font files to /fonts, uncomment:
     @font-face{ font-family:"Montserrat"; src:url("./fonts/Montserrat.woff2") format("woff2"); font-display:swap; }
     @font-face{ font-family:"DejaVu Serif"; src:url("./fonts/DejaVuSerif.woff2") format("woff2"); font-display:swap; }
@@ -51,6 +55,7 @@
       letter-spacing:.2px;
     }
     a{ color:inherit; text-decoration:none; }
+
     .wrap{ max-width:var(--max); margin:0 auto; padding:28px var(--gutter) 84px; }
 
     /* Topbar */
@@ -101,17 +106,17 @@
     .soft{ box-shadow:var(--shadowSoft); }
     .divider{ height:1px; margin:22px 0; background:linear-gradient(90deg, transparent, rgba(246,245,243,.14), transparent); border:0; }
 
-    /* Typography helpers */
-    .muted{ color:var(--muted); }
-    .muted2{ color:var(--muted2); }
+    /* Typography */
     .kicker{
       font-weight: 760;
       letter-spacing: .9px;
       opacity: .95;
       margin: 0 0 14px;
     }
+    .muted{ color:var(--muted); }
+    .muted2{ color:var(--muted2); }
 
-    /* ===== Above-the-fold (unchanged content) ===== */
+    /* ===== Above-the-fold ===== */
     .hero{
       display:grid;
       grid-template-columns: 1fr;
@@ -127,7 +132,6 @@
         padding: 18px 0 22px;
       }
     }
-
     .atfTitle{
       font-size: clamp(30px, 7.2vw, 56px);
       line-height: 1.05;
@@ -138,7 +142,7 @@
       margin: 0 0 14px;
       color: var(--muted);
       font-size: clamp(15px, 4.2vw, 18px);
-      max-width: 42ch;
+      max-width: 46ch;
     }
     .atfTag{
       margin: 0;
@@ -147,15 +151,10 @@
       opacity: .92;
       font-weight: 650;
     }
-
     .heroRight{
       display:flex;
       justify-content:center;
       align-items:center;
-      order: 2;
-    }
-    @media (min-width: 920px){
-      .heroRight{ order: 0; }
     }
     .phoneMock{
       width: min(360px, 82vw);
@@ -167,86 +166,18 @@
       .phoneMock{ width: 420px; transform: translateY(10px); }
     }
 
-    /* ===== Page sections ===== */
-    .section{ padding:28px 0; position:relative; }
+    /* ===== Sections ===== */
+    .section{ padding: var(--space) 0; position:relative; }
     .section h2{
       font-size: clamp(20px, 3.6vw, 26px);
       margin:0 0 12px;
       letter-spacing:-.2px;
     }
-
-    /* Visual image blocks */
-    .media{
-      border-radius: calc(var(--radius) + 8px);
-      border: 1px solid rgba(180,221,227,.18);
-      background:
-        radial-gradient(800px 300px at 10% 10%, rgba(0,151,178,.18), transparent 55%),
-        radial-gradient(600px 280px at 90% 0%, rgba(180,221,227,.12), transparent 60%),
-        rgba(246,245,243,.03);
-      overflow:hidden;
-      box-shadow: var(--shadowSoft);
-      position:relative;
-    }
-    .media img{
-      width:100%;
-      height:auto;
-      display:block;
-    }
-    .media::after{
-      content:"";
-      position:absolute; inset:0;
-      background: radial-gradient(900px 380px at 30% 0%, rgba(0,151,178,.14), transparent 60%);
-      pointer-events:none;
-      mix-blend-mode: screen;
-      opacity:.55;
-    }
-
-    /* Full-bleed editorial separator image */
-    .bleed{
-      width: calc(100% + (var(--gutter) * 2));
-      margin-left: calc(var(--gutter) * -1);
-      margin-right: calc(var(--gutter) * -1);
-      margin-top: 8px;
-      margin-bottom: 8px;
-    }
-    .bleed .media{
-      border-radius: 26px;
-    }
-    @media (min-width: 920px){
-      .bleed .media{ border-radius: 28px; }
-    }
-
-    /* Placeholder style (until images exist) */
-    .placeholder{
-      min-height: 240px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:18px;
-      text-align:left;
-    }
-    .phInner{
-      width:100%;
-      max-width:720px;
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-    }
-    .phLabel{
-      font-size:12px;
-      letter-spacing:.8px;
-      color: rgba(246,245,243,.65);
-      text-transform:uppercase;
-    }
-    .phTitle{
-      font-size:16px;
-      font-weight:760;
-      letter-spacing:-.2px;
-    }
-    .phHint{
-      font-size:13px;
-      color: rgba(246,245,243,.72);
-      max-width:70ch;
+    .section h3{
+      margin:0 0 10px;
+      font-size:15px;
+      letter-spacing:.2px;
+      color:var(--text);
     }
 
     /* Layout helpers */
@@ -284,6 +215,35 @@
     }
     .listBox li{ margin:8px 0; }
 
+    /* Media blocks */
+    .media{
+      border-radius: calc(var(--radius) + 8px);
+      border: 1px solid rgba(180,221,227,.18);
+      background:
+        radial-gradient(800px 300px at 10% 10%, rgba(0,151,178,.18), transparent 55%),
+        radial-gradient(600px 280px at 90% 0%, rgba(180,221,227,.12), transparent 60%),
+        rgba(246,245,243,.03);
+      overflow:hidden;
+      box-shadow: var(--shadowSoft);
+      position:relative;
+    }
+    .media img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+
+    /* Editorial separator image (full-bleed) */
+    .bleed{
+      width: calc(100% + (var(--gutter) * 2));
+      margin-left: calc(var(--gutter) * -1);
+      margin-right: calc(var(--gutter) * -1);
+      margin-top: 8px;
+      margin-bottom: 8px;
+    }
+    .bleed .media{ border-radius: 26px; }
+    @media (min-width: 920px){ .bleed .media{ border-radius: 28px; } }
+
     /* CTA line */
     .ctaLine{
       margin-top: 8px;
@@ -293,59 +253,62 @@
       align-items:center;
     }
 
-    /* FAQ */
-    .faq details{ background:rgba(246,245,243,.05); border:1px solid rgba(246,245,243,.10); border-radius:16px; padding:12px 14px; margin:10px 0; }
-    .faq summary{ cursor:pointer; font-weight:720; color:var(--text); list-style:none; }
-    .faq summary::-webkit-details-marker{ display:none; }
-    .faq .a{ color:var(--muted); margin-top:10px; white-space:pre-line; }
-
-    /* About section specifics */
+    /* About */
     .aboutGrid{ display:grid; grid-template-columns: 1fr; gap:16px; align-items:center; }
     @media (min-width: 920px){ .aboutGrid{ grid-template-columns: .9fr 1.1fr; } }
-    .aboutName{
-      font-size: 18px;
-      font-weight: 780;
-      letter-spacing: -.2px;
-      margin: 0 0 6px;
-    }
-    .aboutRole{
-      margin: 0 0 12px;
-      color: var(--muted2);
-      font-size: 13px;
-      letter-spacing: .2px;
-    }
     .aboutText{
       margin: 0;
       color: var(--muted);
       white-space: pre-line;
       max-width: 78ch;
     }
-    .badgeRow{
+
+    /* Principles tiles */
+    .tilesHead{
       display:flex;
-      flex-wrap:wrap;
+      flex-direction:column;
       gap:10px;
-      margin-top: 12px;
+      margin-bottom: 14px;
     }
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:10px 12px;
-      border-radius:999px;
+    .tileGrid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+    }
+    @media (min-width: 720px){
+      .tileGrid{ grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 1040px){
+      .tileGrid{ grid-template-columns: 1fr 1fr 1fr; }
+    }
+    .tile{
       background: rgba(246,245,243,.05);
-      border: 1px solid rgba(246,245,243,.10);
-      color: rgba(246,245,243,.82);
-      font-size: 12px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      border:1px solid rgba(246,245,243,.12);
+      border-radius: 18px;
+      padding: 14px 14px;
+      box-shadow: 0 12px 36px rgba(0,0,0,.18);
+      min-height: 132px;
     }
-    .badge i{
-      width:8px; height:8px;
-      border-radius:999px;
-      background: rgba(0,151,178,.85);
-      box-shadow: 0 0 0 5px rgba(0,151,178,.14);
-      display:inline-block;
+    .tile .t{
+      font-weight: 780;
+      letter-spacing: -.2px;
+      margin:0 0 8px;
+      color: var(--text);
+      font-size: 14px;
     }
+    .tile .d{
+      margin:0;
+      color: rgba(246,245,243,.78);
+      white-space: pre-line;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    /* FAQ */
+    .faq details{ background:rgba(246,245,243,.05); border:1px solid rgba(246,245,243,.10); border-radius:16px; padding:12px 14px; margin:10px 0; }
+    .faq summary{ cursor:pointer; font-weight:720; color:var(--text); list-style:none; }
+    .faq summary::-webkit-details-marker{ display:none; }
+    .faq .a{ color:var(--muted); margin-top:10px; white-space:pre-line; }
 
     /* Footer */
     .footer{
@@ -382,19 +345,17 @@
       <span class="pill">Pre-Launch · <b>Interesse vormerken</b></span>
     </div>
 
-    <!-- ABOVE THE FOLD (unchanged) -->
+    <!-- ABOVE THE FOLD -->
     <section class="hero" id="top">
-      <div class="heroLeft">
+      <div>
         <div class="kicker">STATE</div>
 
         <h1 class="atfTitle">Mehr Fokus. Besser schlafen. Abends wirklich abschalten.</h1>
 
-        <p class="atfSub">
-          Ein personalisierter Trainingsplan für dein Nervensystem.<br/>
-          Wenige Minuten am Tag. Spürbare Wirkung im Alltag.
-        </p>
+        <p class="atfSub">Ein personalisierter Trainingsplan für dein Nervensystem.
+Wenige Minuten am Tag. Spürbare Wirkung im Alltag.</p>
 
-        <p class="atfTag">👉 Individuell. Funktional. Ohne Methodenchaos.</p>
+        <p class="atfTag">Individuell. Funktional. Ohne Methodenchaos.</p>
       </div>
 
       <div class="heroRight" aria-label="STATE App Preview">
@@ -404,59 +365,50 @@
 
     <hr class="divider" />
 
-    <!-- SECTION: Intro copy + CTA (with image slot) -->
+    <!-- INTRO + CTA + IMAGE -->
     <section class="section" id="intro">
       <div class="grid2">
         <div class="stack">
-          <p class="lead">Du hast wenig Zeit. 
-Dein Kopf ist permanent eingeschaltet. 
-Und du willst Dinge, die dir wirklich helfen – 
+          <p class="lead">Du hast wenig Zeit.
+Dein Kopf ist permanent eingeschaltet.
+Und du willst Dinge, die dir wirklich helfen –
 nicht erklären, motivieren oder beschäftigen.
 
-STATE erstellt einen personalisierten Plan, 
-der dir hilft, fokussierter zu arbeiten, 
-abends runterzufahren 
+STATE erstellt einen personalisierten Plan,
+der dir hilft, fokussierter zu arbeiten, abends runterzufahren
 und wieder in ein stabiles Grundniveau zu finden.
 
-
-Kein Content-Hub. 
-Keine Mediathek. 
+Kein Content-Hub.
+Keine Mediathek.
 Kein „probier mal diese Übung“.
 
 Ein Plan. Für dich. Für deinen Alltag.</p>
 
           <div class="ctaLine">
-            <a class="btn btnPrimary" href="#interesse">👉 Interesse vormerken</a>
+            <a class="btn btnPrimary" href="#interesse">Interesse vormerken</a>
           </div>
         </div>
 
-        <!-- Image slot 1 -->
-<div class="image-wrap">
-  <img
-    src="./img-high-mental-load.png"
-    alt="Hohe mentale Belastung im Alltag"
-    class="section-image"
-  />
-</div>
-
-    <!-- Editorial separator (full-bleed image slot) -->
-    <div class="bleed" aria-label="Editorial Separator">
-      <div class="media placeholder">
-        <div class="phInner">
-          <div class="phLabel">Editorial Separator</div>
-          <div class="phTitle">Breites Bild als Atemraum zwischen Abschnitten</div>
-          <div class="phHint">Dateiname: <b>img-separator-1.webp</b></div>
+        <div class="media" aria-label="Bild – Alltag / hoher mentaler Load">
+          <img src="./img-01-high-mental-load.png" alt="Hohe mentale Belastung im Alltag" />
         </div>
+      </div>
+    </section>
+
+    <!-- SEPARATOR 1 -->
+    <div class="bleed" aria-label="Editorial Separator">
+      <div class="media">
+        <img src="./img-02-separator-1.png" alt="Editorial Separator" />
       </div>
     </div>
 
-    <!-- SECTION: Was ist STATE? -->
+    <!-- WAS IST STATE -->
     <section class="section" id="was-ist-state">
       <div class="grid2">
         <div class="stack">
           <h2>Was ist STATE?</h2>
 
-          <p class="copy">STATE ist ein personalisierter Trainingsplan für dein Nervensystem, 
+          <p class="copy">STATE ist ein personalisierter Trainingsplan für dein Nervensystem,
 der Menschen mit hoher mentaler Belastung dabei unterstützt,</p>
 
           <div class="listBox" aria-label="Benefits Liste">
@@ -470,81 +422,67 @@ der Menschen mit hoher mentaler Belastung dabei unterstützt,</p>
 
           <p class="copy">ohne täglich Zeit in Tools, Methoden oder Entscheidungen zu investieren.</p>
 
-          <p class="copy">STATE kombiniert wissenschaftlich fundierte Ansätze 
-aus Atemarbeit, Nervensystemforschung und Polyvagaltheorie – 
+          <p class="copy">STATE kombiniert wissenschaftlich fundierte Ansätze
+aus Atemarbeit, Nervensystemforschung und Polyvagaltheorie –
 übersetzt in konkrete, alltagstaugliche Umsetzung.</p>
 
           <div class="card soft" style="padding:14px 16px;">
-            <p class="copy" style="margin:0; color: var(--text); opacity:.92;">Nicht mehr wissen. 
-Sondern wissen, was DIR jetzt wirklich hilft.</p>
+            <p class="copy" style="margin:0; color: var(--text); opacity:.92;">Nicht mehr wissen.
+Sondern wissen, was dir jetzt wirklich hilft.</p>
           </div>
         </div>
 
-        <!-- Image slot 2 -->
-        <div class="media placeholder" aria-label="Bildplatzhalter – wissenschaftlich/funktional">
-          <div class="phInner">
-            <div class="phLabel">Bildplatzhalter</div>
-            <div class="phTitle">Visuelles Motiv: „Wissenschaftlich fundiert, funktional“</div>
-            <div class="phHint">Dateiname: <b>img-science-functional.webp</b></div>
-          </div>
+        <div class="media" aria-label="Bild – science based / funktional">
+          <img src="./img-03-science-functional.png" alt="Wissenschaftlich fundiert und funktional" />
         </div>
       </div>
     </section>
 
-    <!-- SECTION: Warum du dich so fühlst -->
+    <!-- WARUM -->
     <section class="section" id="warum">
       <div class="grid2">
-        <!-- Image slot 3 -->
-        <div class="media placeholder" aria-label="Bildplatzhalter – mentale Aktivierung">
-          <div class="phInner">
-            <div class="phLabel">Bildplatzhalter</div>
-            <div class="phTitle">Visuelles Motiv: „Permanente Aktivierung“</div>
-            <div class="phHint">Dateiname: <b>img-mental-activation.webp</b></div>
-          </div>
+        <div class="media" aria-label="Bild – permanente Aktivierung">
+          <img src="./img-04-mental-activation.png" alt="Permanente mentale Aktivierung" />
         </div>
 
         <div class="stack">
-          <h2>Warum du dich gerade so fühlst, wie du dich fühlst</h2>
+          <h2>Warum du dich fühlst, wie du dich fühlst</h2>
 
-          <p class="copy">Es ist nicht nur der Stress. 
+          <p class="copy">Es ist nicht nur der Stress.
 Es ist die permanente mentale Aktivierung.
 
-Was mache ich heute? 
-Was passt jetzt? 
-Wie lange? 
-Morgens oder abends? 
+Was mache ich heute?
+Was passt jetzt?
+Wie lange?
+Morgens oder abends?
 Bringt das bei mir überhaupt etwas?
 
-Du hast Apps probiert. 
+Du hast Apps probiert.
 Meditation. Atemübungen. Journaling. YouTube.
 Aber funktioniert hat es nie.
- Nicht, weil die Ansätze falsch sind,
- sondern weil sie nicht auf dich zugeschnitten waren
- und nicht in deinen Alltag gepasst haben.
-Und weil du für all das Zeit, Aufmerksamkeit und Geduld 
+Nicht, weil die Ansätze falsch sind,
+sondern weil sie nicht auf dich zugeschnitten waren
+und nicht in deinen Alltag gepasst haben.
+Und weil du für all das Zeit, Aufmerksamkeit und Geduld
 aufbringen musstest, die du schlicht nicht mehr hast.</p>
         </div>
       </div>
     </section>
 
-    <!-- Editorial separator 2 -->
+    <!-- SEPARATOR 2 -->
     <div class="bleed" aria-label="Editorial Separator">
-      <div class="media placeholder">
-        <div class="phInner">
-          <div class="phLabel">Editorial Separator</div>
-          <div class="phTitle">Breites Bild als Ruhepunkt</div>
-          <div class="phHint">Dateiname: <b>img-separator-2.webp</b></div>
-        </div>
+      <div class="media">
+        <img src="./img-05-separator-2.png" alt="Editorial Separator" />
       </div>
     </div>
 
-    <!-- SECTION: Was du eigentlich willst -->
+    <!-- WAS DU WILLST -->
     <section class="section" id="was-du-willst">
       <div class="grid2">
         <div class="stack">
           <h2>Was du eigentlich willst</h2>
 
-          <p class="copy">Du willst keine neue Methode. 
+          <p class="copy">Du willst keine neue Methode.
 Du willst ein Ergebnis:</p>
 
           <div class="listBox" aria-label="Ergebnis Liste">
@@ -558,85 +496,57 @@ Du willst ein Ergebnis:</p>
             </ul>
           </div>
 
-          <p class="copy"><strong style="color:var(--text);">Nicht irgendwann. 
+          <p class="copy"><strong style="color:var(--text);">Nicht irgendwann.
 Jetzt. Im Alltag.</strong></p>
         </div>
 
-        <!-- Image slot 4 -->
-        <div class="media placeholder" aria-label="Bildplatzhalter – Ergebnis/Leichtigkeit">
-          <div class="phInner">
-            <div class="phLabel">Bildplatzhalter</div>
-            <div class="phTitle">Visuelles Motiv: „Klarheit & Abschalten“</div>
-            <div class="phHint">Dateiname: <b>img-clarity-sleep.webp</b></div>
-          </div>
+        <div class="media" aria-label="Bild – Klarheit & Abschalten">
+          <img src="./img-06-clarity-sleep.png" alt="Klarheit und Abschalten" />
         </div>
       </div>
     </section>
 
-    <!-- SECTION: Wie STATE funktioniert -->
+    <!-- WIE -->
     <section class="section" id="wie">
       <h2>Wie STATE funktioniert (ohne Umwege)</h2>
 
       <div class="grid2" style="margin-top:10px;">
         <div class="stack">
-          <p class="copy">Du beantwortest wenige, gezielte Fragen – z. B.:</p>
+          <p class="copy">Du beantwortest wenige, gezielte Fragen – z. B.:
+Was ist dein aktuelles Ziel?
+* Mehr Fokus & mentale Klarheit
+* Runterfahren & innere Ruhe
+* Besser schlafen & regenerieren
+* Mehr Energie & bessere Performance</p>
 
-          <div class="card soft">
-            <p class="copy" style="margin:0 0 10px; color:var(--text); opacity:.92;"><strong>Was ist dein aktuelles Ziel?</strong></p>
-            <div class="listBox" style="box-shadow:none;">
-              <ul>
-                <li>Mehr Fokus & mentale Klarheit</li>
-                <li>Runterfahren & innere Ruhe</li>
-                <li>Besser schlafen & regenerieren</li>
-                <li>Mehr Energie & bessere Performance</li>
-              </ul>
-            </div>
-          </div>
+          <p class="copy">Dazu kommen Fragen zu:
+* deinem Zeitbudget
+* deinem aktuellen Zustand
+Auf dieser Basis erstellt STATE deinen individuellen Plan.</p>
 
-          <div class="card soft">
-            <p class="copy" style="margin:0 0 10px; color:var(--text); opacity:.92;"><strong>Dazu kommen Fragen zu:</strong></p>
-            <div class="listBox" style="box-shadow:none;">
-              <ul>
-                <li>deinem Zeitbudget</li>
-                <li>deinem aktuellen Zustand</li>
-              </ul>
-            </div>
-          </div>
-
-          <p class="copy">Auf dieser Basis erstellt STATE deinen individuellen Plan. (in diesem abschnitt fügen wir ein bild davon ein, wie ein plan aussehen könnte, plane hier ein bild ein)
-Kein One-Size-Fits-All. 
-Kein starres Schema. 
-Sondern ein Plan, der sich anpasst, 
-wenn du es brauchst.</p>
+          <p class="copy">Kein One-Size-Fits-All.
+Kein starres Schema.
+Sondern ein Plan, der sich anpasst,
+wenn du dich veränderst.</p>
         </div>
 
-        <!-- Image slot 5 (required plan visual) -->
-        <div class="media placeholder" aria-label="Bildplatzhalter – Plan Vorschau">
-          <div class="phInner">
-            <div class="phLabel">Bildplatzhalter</div>
-            <div class="phTitle">Visuelles Motiv: „So könnte dein Plan aussehen“</div>
-            <div class="phHint">Dateiname: <b>img-plan-preview.webp</b></div>
-          </div>
+        <div class="media" aria-label="Bild – Plan Vorschau">
+          <img src="./img-07-plan-preview.png" alt="Beispielansicht eines STATE Plans" />
         </div>
       </div>
     </section>
 
-    <!-- SECTION: Wenige Minuten -->
+    <!-- WENIGE MINUTEN -->
     <section class="section" id="wenige-minuten">
       <div class="grid2">
-        <!-- Image slot 6 -->
-        <div class="media placeholder" aria-label="Bildplatzhalter – 2–10 Minuten">
-          <div class="phInner">
-            <div class="phLabel">Bildplatzhalter</div>
-            <div class="phTitle">Visuelles Motiv: „2–10 Minuten / Mikro-Intervention“</div>
-            <div class="phHint">Dateiname: <b>img-2-10-min.webp</b></div>
-          </div>
+        <div class="media" aria-label="Bild – 2–10 Minuten">
+          <img src="./img-08-2-10-min.png" alt="2 bis 10 Minuten pro Tag" />
         </div>
 
         <div class="stack">
           <h2>Wenige Minuten. Echter Unterschied.</h2>
 
-          <p class="copy">STATE funktioniert nicht, weil du diszipliniert bist. 
+          <p class="copy">STATE funktioniert nicht, weil du diszipliniert bist.
 Sondern weil es einfach ist.</p>
 
           <div class="listBox" aria-label="Warum es funktioniert">
@@ -649,24 +559,25 @@ Sondern weil es einfach ist.</p>
             </ul>
           </div>
 
-          <p class="copy">Du öffnest STATE. 
-Du siehst: Das ist heute dran. 
-Du machst es. 
+          <p class="copy">Du öffnest STATE.
+Du siehst: Das ist heute dran.
+Du machst es.
 Und gehst weiter.
 
-Genau so entsteht Veränderung, 
-die sich in dein Leben integriert, statt es noch voller zu machen.</p>
+Genau so entsteht Veränderung,
+die sich in dein Leben integriert,
+statt es noch voller zu machen.</p>
         </div>
       </div>
     </section>
 
-    <!-- SECTION: Was sich verändert -->
+    <!-- VERÄNDERUNG -->
     <section class="section" id="veraenderung">
       <div class="grid2">
         <div class="stack">
           <h2>Was sich durch STATE verändert</h2>
 
-          <p class="copy">Nicht auf einer Hochglanz-Grafik. 
+          <p class="copy">Nicht auf einer Hochglanz-Grafik.
 Sondern im echten Leben.</p>
 
           <div class="listBox" aria-label="Veränderungen Liste">
@@ -680,55 +591,50 @@ Sondern im echten Leben.</p>
             </ul>
           </div>
 
-          <p class="copy">STATE verspricht keine Wunder. 
-STATE schafft Bedingungen, 
+          <p class="copy">STATE verspricht keine Wunder.
+STATE schafft Bedingungen,
 unter denen dein System wieder zuverlässig arbeiten kann.</p>
         </div>
 
-        <!-- Image slot 7 -->
-        <div class="media placeholder" aria-label="Bildplatzhalter – Ruhe/Grundniveau">
-          <div class="phInner">
-            <div class="phLabel">Bildplatzhalter</div>
-            <div class="phTitle">Visuelles Motiv: „Ruhigeres Grundniveau“</div>
-            <div class="phHint">Dateiname: <b>img-stable-baseline.webp</b></div>
-          </div>
+        <div class="media" aria-label="Bild – ruhigeres Grundniveau">
+          <img src="./img-09-stable-baseline.png" alt="Ruhigeres Grundniveau" />
         </div>
       </div>
     </section>
 
-    <!-- ABOUT (new) -->
-    <section class="section" id="ueber-mich">
+    <!-- HALTUNG (Über mich / Essenz) -->
+    <section class="section" id="haltung">
       <div class="card soft">
-        <div class="aboutGrid">
-          <!-- About image slot -->
-          <div class="media placeholder" aria-label="Bildplatzhalter – Über mich Portrait">
-            <div class="phInner">
-              <div class="phLabel">Über mich</div>
-              <div class="phTitle">Portrait / Creator Visual</div>
-              <div class="phHint">Ein hochwertiges, natürliches Portrait (ruhig, klar, modern). Dateiname: <b>img-about-nora.webp</b></div>
-            </div>
+        <div class="grid2">
+          <div class="media" aria-label="Bild – Nora / Creator">
+            <img src="./img-10-about-nora.png" alt="Portrait von Nora" />
           </div>
 
           <div class="stack">
-            <h2>Über mich</h2>
-            <p class="aboutName">Nora Becker</p>
-            <p class="aboutRole">Konzept · Nervensystemarbeit · Breathwork · Struktur</p>
+            <h2>Haltung</h2>
 
-            <p class="aboutText">STATE entsteht nicht aus „noch einer Methode“, sondern aus der Frage:
-Was braucht ein Nervensystem im echten Leben – wenn Zeit knapp ist, der Kopf nicht aufhört und du trotzdem funktionieren willst?
+            <p class="copy">Hi, ich bin Nora
+und STATE ist nicht entstanden,
+weil es noch eine Methode gebraucht hätte.
 
-Ich arbeite an der Schnittstelle aus Atemarbeit, Nervensystemregulation und alltagstauglicher Umsetzung.
-STATE ist mein Versuch, das Methodenchaos zu beenden – und dir einen Plan zu geben, der dich entlastet, statt dich zu beschäftigen.</p>
+STATE ist entstanden,
+weil es zu viele gibt.
 
-            <div class="badgeRow" aria-label="Trust badges">
-              <span class="badge"><i aria-hidden="true"></i>Atemarbeit</span>
-              <span class="badge"><i aria-hidden="true"></i>Polyvagal</span>
-              <span class="badge"><i aria-hidden="true"></i>Alltagstauglich</span>
-              <span class="badge"><i aria-hidden="true"></i>Struktur statt Overload</span>
-            </div>
+Jahrelang habe ich für mich (und meine Kunden)
+nach der perfekten Methode gesucht,
+um endlich glücklicher, gesünder oder fokussierter zu sein.
 
-            <div class="ctaLine" style="margin-top:14px;">
-              <a class="btn btnPrimary" href="#interesse">👉 Interesse vormerken</a>
+Um am Ende festzustellen,
+dass nichts davon funktioniert,
+wenn wir doch das Gefühl haben,
+dass irgendetwas anderes 'noch besser' helfen könnte.
+
+STATE ist die logische Folge
+einer Erkenntnis:
+Radikale Einfachheit gewinnt.</p>
+
+            <div class="ctaLine">
+              <a class="btn btnPrimary" href="#interesse">Interesse vormerken</a>
             </div>
           </div>
         </div>
@@ -737,41 +643,41 @@ STATE ist mein Versuch, das Methodenchaos zu beenden – und dir einen Plan zu g
 
     <!-- FAQ -->
     <section class="section faq" id="faq">
-      <h2>Typische Gedanken und ehrliche Antworten</h2>
+      <h2>Typische Gedanken – und ehrliche Antworten</h2>
 
       <details>
         <summary>„Funktioniert das wirklich bei mir?“</summary>
-        <div class="a">Ja, weil der Plan für dich gemacht ist. 
+        <div class="a">Ja, weil der Plan für dich gemacht ist.
 Basierend auf deinem Ziel, deiner Zeit und deinem aktuellen Status.</div>
       </details>
 
       <details>
         <summary>„Ich habe keine Zeit für noch eine App.“</summary>
-        <div class="a">STATE braucht weniger Zeit als jede Meditations- oder Atem-App. 
+        <div class="a">STATE braucht weniger Zeit als jede Meditations- oder Atem-App.
 2–10 Minuten. Punkt.</div>
       </details>
 
       <details>
         <summary>„Was, wenn ich es wieder nicht durchziehe?“</summary>
-        <div class="a">STATE ist so gebaut, dass du nicht motiviert sein musst. 
+        <div class="a">STATE ist so gebaut, dass du nicht motiviert sein musst.
 Du setzt um – der Plan übernimmt den Rest.</div>
       </details>
 
       <details>
         <summary>„Ist das wieder so Wellness-Zeug?“</summary>
-        <div class="a">Nein. 
-STATE ist funktional. 
+        <div class="a">Nein.
+STATE ist funktional.
 Wie ein Trainingsplan – nur für dein Nervensystem.</div>
       </details>
     </section>
 
-    <!-- SECTION: Für wen -->
+    <!-- FÜR WEN -->
     <section class="section" id="fuer-wen">
       <h2>Für wen STATE gedacht ist</h2>
 
       <div class="grid2" style="margin-top:10px;">
         <div class="card soft">
-          <h3 style="margin:0 0 10px; font-size:15px; letter-spacing:.2px;">STATE ist für Menschen, die:</h3>
+          <h3>STATE ist für Menschen, die:</h3>
           <div class="listBox" style="box-shadow:none;">
             <ul>
               <li>viel Verantwortung tragen</li>
@@ -784,7 +690,7 @@ Wie ein Trainingsplan – nur für dein Nervensystem.</div>
         </div>
 
         <div class="card soft">
-          <h3 style="margin:0 0 10px; font-size:15px; letter-spacing:.2px;">STATE ist nicht für dich, wenn du:</h3>
+          <h3>STATE ist nicht für dich, wenn du:</h3>
           <div class="listBox" style="box-shadow:none;">
             <ul>
               <li>schnelle Heilung erwartest</li>
@@ -795,40 +701,100 @@ Wie ein Trainingsplan – nur für dein Nervensystem.</div>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- Image slot 8 -->
-      <div class="bleed" aria-label="Editorial Separator">
-        <div class="media placeholder" style="margin-top:16px;">
-          <div class="phInner">
-            <div class="phLabel">Editorial Separator</div>
-            <div class="phTitle">Breites Bild als Abschnittsabschluss</div>
-            <div class="phHint">Dateiname: <b>img-separator-3.webp</b></div>
-          </div>
+    <!-- PRINCIPLES TILES -->
+    <section class="section" id="prinzipien">
+      <div class="tilesHead">
+        <h2>STATE folgt keinen Trends. STATE folgt Prinzipien.</h2>
+        <p class="copy">Daher steht STATE für …</p>
+      </div>
+
+      <div class="tileGrid" aria-label="Prinzipien Kacheln">
+        <div class="tile">
+          <p class="t">Radikale Einfachheit</p>
+          <p class="d">Nicht, weil weniger trendy ist.
+Sondern weil zu viel der eigentliche Stressor ist.</p>
+        </div>
+
+        <div class="tile">
+          <p class="t">Zustand vor Methode</p>
+          <p class="d">Was du tust, ist zweitrangig.
+Aus welchem Zustand heraus du es tust, nicht.</p>
+        </div>
+
+        <div class="tile">
+          <p class="t">Entlastung vor Aktivierung</p>
+          <p class="d">Wir fügen nichts hinzu,
+bevor etwas gehen durfte.</p>
+        </div>
+
+        <div class="tile">
+          <p class="t">Keine Bewertung</p>
+          <p class="d">Kein richtig.
+Kein falsch.
+Kein „du solltest“.</p>
+        </div>
+
+        <div class="tile">
+          <p class="t">Alltag als Maßstab</p>
+          <p class="d">Wenn es nicht in dein echtes Leben passt,
+passt es nicht.</p>
+        </div>
+
+        <div class="tile">
+          <p class="t">Wirkung statt Erklärung</p>
+          <p class="d">STATE überzeugt nicht.
+STATE wirkt.</p>
+        </div>
+
+        <div class="tile">
+          <p class="t">Wachstum ohne Druck</p>
+          <p class="d">Nicht als Ziel.
+Sondern als logische Folge von Raum.</p>
+        </div>
+
+        <div class="tile">
+          <p class="t">Führung ohne Abhängigkeit</p>
+          <p class="d">STATE hält den Rahmen.
+Du bleibst bei dir.</p>
+        </div>
+
+        <div class="tile">
+          <p class="t">—</p>
+          <p class="d"> </p>
         </div>
       </div>
     </section>
 
-    <!-- SECTION: Aktueller Stand + CTA to form -->
+    <!-- SEPARATOR 3 -->
+    <div class="bleed" aria-label="Editorial Separator">
+      <div class="media">
+        <img src="./img-11-separator-3.png" alt="Editorial Separator" />
+      </div>
+    </div>
+
+    <!-- AKTUELLER STAND -->
     <section class="section" id="launch">
       <div class="card soft">
         <h2 style="margin-top:0;">Aktueller Stand</h2>
 
         <p class="copy">STATE befindet sich aktuell vor dem Launch.
-Diese Seite ist für Menschen, 
+Diese Seite ist für Menschen,
 die sich hier wiedererkennen und wissen:
 Wenn das live ist, will ich das nutzen.</p>
 
         <div class="ctaLine" style="margin-top:14px;">
-          <a class="btn btnPrimary" href="#interesse">👉 Interesse vormerken</a>
+          <a class="btn btnPrimary" href="#interesse">Interesse vormerken</a>
         </div>
 
-        <p class="copy muted2" style="margin-top:14px;">Kein Spam. 
-Kein Druck. 
+        <p class="copy muted2" style="margin-top:14px;">Kein Spam.
+Kein Druck.
 Nur ein Update, wenn STATE verfügbar ist.</p>
       </div>
     </section>
 
-    <!-- Interest anchor (form comes later) -->
+    <!-- INTEREST (FORM COMES NEXT) -->
     <section class="section" id="interesse">
       <div class="card soft">
         <h2 style="margin-top:0;">Interesse vormerken</h2>
