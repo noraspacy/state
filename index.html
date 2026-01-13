@@ -16,50 +16,57 @@
       --bg:#041b20;
 
       --text: rgba(246,245,243,.92);
-      --muted: rgba(246,245,243,.74);
-      --muted2: rgba(246,245,243,.58);
+      --muted: rgba(246,245,243,.76);
+      --muted2: rgba(246,245,243,.60);
 
       --brand: var(--c1);
       --brand2:#27a9c0;
       --brandInk:#041b20;
 
       --ring: rgba(0,151,178,.42);
-      --radius:20px;
 
-      --shadow:0 18px 60px rgba(0,0,0,.38);
-      --shadowSoft:0 14px 44px rgba(0,0,0,.26);
-
-      --max:1040px;
+      --max:1080px;
       --gutter:20px;
 
-      --border: rgba(246,245,243,.12);
+      --radius:22px;
+      --radiusSm:16px;
 
-      /* slightly “alive” glass */
-      --glass: linear-gradient(180deg, rgba(246,245,243,.10), rgba(246,245,243,.05));
-      --glass2: linear-gradient(180deg, rgba(0,151,178,.14), rgba(246,245,243,.04));
+      --border: rgba(246,245,243,.12);
+      --borderHi: rgba(180,221,227,.20);
+
+      --shadow: 0 22px 70px rgba(0,0,0,.42);
+      --shadowSoft: 0 14px 44px rgba(0,0,0,.26);
+      --shadowTile: 0 18px 52px rgba(0,0,0,.22);
+
+      --glass: linear-gradient(180deg, rgba(246,245,243,.11), rgba(246,245,243,.05));
+      --glassTile: linear-gradient(180deg, rgba(246,245,243,.08), rgba(246,245,243,.04));
     }
 
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      /* Better readability: slightly higher contrast, tighter letter spacing, more “alive” sizing */
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
       background:
         radial-gradient(1100px 680px at 18% -12%, rgba(0,151,178,.22), transparent 62%),
         radial-gradient(920px 680px at 92% -4%, rgba(180,221,227,.16), transparent 58%),
         radial-gradient(900px 760px at 50% 112%, rgba(246,245,243,.06), transparent 60%),
         var(--bg);
       color:var(--text);
-      line-height:1.62;
-      letter-spacing:.15px;
+      line-height:1.64;
+      letter-spacing: 0;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     a{ color:inherit; text-decoration:none; }
 
-    .wrap{ max-width:var(--max); margin:0 auto; padding:26px var(--gutter) 84px; }
+    .wrap{ max-width:var(--max); margin:0 auto; padding:26px var(--gutter) 86px; }
 
     /* Topbar */
     .topbar{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 0 18px; }
-    .logo{ display:flex; align-items:center; gap:10px; font-weight:780; letter-spacing:.9px; }
+    .logo{ display:flex; align-items:center; gap:10px; font-weight:820; letter-spacing:.9px; }
     .dot{ width:12px; height:12px; border-radius:999px; background:var(--brand); box-shadow:0 0 0 7px rgba(0,151,178,.12); }
     .pill{
       display:inline-flex; align-items:center; gap:8px;
@@ -72,47 +79,19 @@
       -webkit-backdrop-filter:blur(10px);
       white-space:nowrap;
     }
-    .pill b{ color:var(--text); font-weight:700; }
-
-    /* Typography */
-    h1,h2,h3{ margin:0; }
-    .kicker{
-      font-weight: 800;
-      letter-spacing: 1.05px;
-      opacity: .95;
-      margin: 0 0 14px;
-    }
-    .atfTitle{
-      font-size: clamp(32px, 7.4vw, 58px);
-      line-height: 1.03;
-      margin: 0 0 12px;
-      letter-spacing: -0.9px;
-      font-weight: 860;
-    }
-    .atfSub{
-      margin: 0 0 14px;
-      color: var(--muted);
-      font-size: clamp(15px, 4.2vw, 18px);
-      max-width: 44ch;
-    }
-    .atfTag{
-      margin: 0;
-      font-size: clamp(14px, 3.8vw, 16px);
-      color: var(--text);
-      opacity: .92;
-      font-weight: 700;
-    }
+    .pill b{ color:var(--text); font-weight:740; }
 
     /* Buttons */
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
       padding:12px 16px; border-radius:14px;
-      border:1px solid rgba(246,245,243,.12);
+      border:1px solid rgba(246,245,243,.14);
       background:rgba(246,245,243,.06);
-      color:var(--text); font-weight:740;
-      transition:transform .08s ease, background .2s ease, border .2s ease;
+      color:var(--text);
+      font-weight:760;
+      transition:transform .08s ease, background .2s ease, border .2s ease, box-shadow .2s ease;
     }
-    .btn:hover{ background:rgba(246,245,243,.09); border-color:rgba(246,245,243,.18); transform:translateY(-1px); }
+    .btn:hover{ background:rgba(246,245,243,.09); border-color:rgba(246,245,243,.20); transform:translateY(-1px); }
     .btnPrimary{
       background:linear-gradient(180deg, var(--brand2), var(--brand));
       border-color:rgba(0,0,0,.18);
@@ -121,28 +100,64 @@
     }
     .btn:focus{ outline:none; box-shadow:0 0 0 4px var(--ring); }
 
+    /* Typography */
+    h1,h2,h3{ margin:0; }
+    .kicker{
+      font-weight: 840;
+      letter-spacing: 1.05px;
+      opacity: .96;
+      margin: 0 0 14px;
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+    .atfTitle{
+      font-size: clamp(34px, 7.2vw, 60px);
+      line-height: 1.02;
+      margin: 0 0 14px;
+      letter-spacing: -0.9px;
+      font-weight: 900;
+    }
+    .atfSub{
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: clamp(16px, 3.6vw, 19px);
+      max-width: 44ch;
+    }
+    .atfTag{
+      margin: 0;
+      font-size: clamp(14px, 3.2vw, 16px);
+      color: var(--text);
+      opacity: .93;
+      font-weight: 760;
+    }
+
     /* Layout helpers */
     .section{ padding:26px 0; }
     .section h2{
-      font-size: clamp(20px, 3.6vw, 26px);
+      font-size: clamp(22px, 3.2vw, 28px);
       margin:0 0 12px;
       letter-spacing:-.25px;
-      font-weight: 840;
+      font-weight: 880;
     }
     .stack{ display:flex; flex-direction:column; gap:12px; }
     .grid2{ display:grid; grid-template-columns: 1fr; gap:18px; align-items:start; }
-    @media (min-width: 920px){ .grid2{ grid-template-columns: 1fr 1fr; gap:22px; } }
+    @media (min-width: 920px){ .grid2{ grid-template-columns: 1fr 1fr; gap:24px; } }
 
-    /* Copy blocks */
+    /* Copy – IMPORTANT: no weird line breaks */
     .lead, .copy{
       margin:0;
       color: var(--muted);
       max-width: 78ch;
-      white-space: pre-line;
-      font-size: 16px;
+      font-size: 16.5px;
+      white-space: normal; /* keep it clean */
     }
-    .lead{ font-size: clamp(16px, 4.2vw, 18px); }
-    .strong{ color: var(--text); font-weight: 760; }
+    .lead{ font-size: clamp(16.5px, 3.8vw, 18.5px); }
+    .strong{ color: var(--text); font-weight: 800; }
+
+    /* Paragraph spacing utility */
+    .p{ margin: 0; }
+    .p + .p{ margin-top: 10px; }
+    .pTight + .pTight{ margin-top: 8px; }
 
     /* Cards */
     .card{
@@ -150,7 +165,7 @@
       border-radius:var(--radius);
       padding:18px 18px;
       background: var(--glass);
-      border:1px solid rgba(246,245,243,.12);
+      border:1px solid var(--border);
       box-shadow: var(--shadowSoft);
       backdrop-filter:blur(12px);
       -webkit-backdrop-filter:blur(12px);
@@ -160,35 +175,14 @@
       content:"";
       position:absolute; inset:-2px;
       background:
-        radial-gradient(700px 240px at 12% 10%, rgba(0,151,178,.22), transparent 55%),
-        radial-gradient(540px 220px at 88% 0%, rgba(180,221,227,.14), transparent 60%);
+        radial-gradient(720px 240px at 12% 10%, rgba(0,151,178,.22), transparent 55%),
+        radial-gradient(560px 220px at 88% 0%, rgba(180,221,227,.14), transparent 60%);
       pointer-events:none;
       opacity:.55;
     }
     .card > *{ position:relative; }
 
-    /* Better highlighting for tiles */
-    .tile{
-      padding:16px 16px;
-      border-radius:18px;
-      background: linear-gradient(180deg, rgba(246,245,243,.07), rgba(246,245,243,.04));
-      border: 1px solid rgba(180,221,227,.18);
-      box-shadow: 0 16px 46px rgba(0,0,0,.22);
-      position:relative;
-      overflow:hidden;
-    }
-    .tile::after{
-      content:"";
-      position:absolute; inset:0;
-      background: radial-gradient(600px 220px at 20% 0%, rgba(0,151,178,.18), transparent 55%);
-      opacity:.55;
-      pointer-events:none;
-      mix-blend-mode: screen;
-    }
-    .tile > *{ position:relative; }
-    .tile h3{ margin:0 0 8px; font-size:15px; font-weight:860; letter-spacing:-.15px; color:var(--text); }
-    .tile p{ margin:0; color:var(--muted); }
-
+    /* Tiles */
     .tiles3{
       display:grid;
       grid-template-columns: 1fr;
@@ -197,25 +191,46 @@
     }
     @media (min-width: 920px){ .tiles3{ grid-template-columns: 1fr 1fr 1fr; } }
 
-    /* Lists in boxes */
+    .tile{
+      padding:16px 16px;
+      border-radius:18px;
+      background: var(--glassTile);
+      border: 1px solid var(--borderHi);
+      box-shadow: var(--shadowTile);
+      position:relative;
+      overflow:hidden;
+    }
+    .tile::after{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(640px 240px at 18% 0%, rgba(0,151,178,.18), transparent 58%);
+      opacity:.55;
+      pointer-events:none;
+      mix-blend-mode: screen;
+    }
+    .tile > *{ position:relative; }
+    .tile h3{ margin:0 0 8px; font-size:15px; font-weight:900; letter-spacing:-.15px; color:var(--text); }
+    .tile p{ margin:0; color:var(--muted); font-size: 15.5px; line-height: 1.55; }
+
+    /* Lists */
     .listBox{
       padding:14px 14px;
       border-radius:18px;
       background: rgba(246,245,243,.05);
-      border:1px solid rgba(180,221,227,.18);
-      box-shadow: 0 18px 50px rgba(0,0,0,.22);
+      border:1px solid var(--borderHi);
+      box-shadow: 0 18px 52px rgba(0,0,0,.22);
       position:relative;
       overflow:hidden;
     }
     .listBox::after{
       content:"";
       position:absolute; inset:0;
-      background: radial-gradient(720px 240px at 18% 0%, rgba(0,151,178,.12), transparent 60%);
+      background: radial-gradient(760px 260px at 18% 0%, rgba(0,151,178,.12), transparent 60%);
       pointer-events:none;
       opacity:.65;
     }
     .listBox > *{ position:relative; }
-    .listBox ul{ margin: 6px 0 0 18px; color: var(--text); opacity: .92; }
+    .listBox ul{ margin: 6px 0 0 18px; color: var(--text); opacity: .93; }
     .listBox li{ margin:8px 0; }
 
     /* Hero */
@@ -229,21 +244,21 @@
     }
     @media (min-width: 920px){
       .hero{
-        grid-template-columns: 1.05fr .95fr;
+        grid-template-columns: 1.08fr .92fr;
         gap: 34px;
         padding: 18px 0 18px;
       }
     }
     .heroRight{ display:flex; justify-content:center; align-items:center; }
     .phoneMock{
-      width: min(380px, 86vw);
+      width: min(390px, 88vw);
       height: auto;
       filter: drop-shadow(0 30px 80px rgba(0,0,0,.45));
       transform: translateY(6px);
     }
-    @media (min-width: 920px){ .phoneMock{ width: 430px; transform: translateY(10px); } }
+    @media (min-width: 920px){ .phoneMock{ width: 440px; transform: translateY(10px); } }
 
-    /* Images (no more layout break) */
+    /* Images */
     .media{
       border-radius: calc(var(--radius) + 8px);
       border: 1px solid rgba(180,221,227,.18);
@@ -266,66 +281,56 @@
       display:block;
       object-fit:cover;
     }
-
-    /* right-side images should never get “too tall” */
     .mediaTall{ aspect-ratio: 4 / 3; }
-    @media (min-width: 920px){
-      .mediaTall{ aspect-ratio: 4 / 3; }
-    }
 
-    /* “Spacer” separators: slim, full width, no giant placeholders */
-    .separator{
-      width: 100%;
-      margin: 18px 0;
-    }
+    /* Slim separators */
+    .separator{ width: 100%; margin: 18px 0; }
     .separator .media{
       border-radius: 18px;
-      aspect-ratio: 12 / 2;  /* slim strip */
+      aspect-ratio: 14 / 2;
     }
     @media (min-width: 920px){
-      .separator .media{ border-radius: 22px; aspect-ratio: 14 / 2; }
+      .separator .media{ border-radius: 22px; aspect-ratio: 16 / 2; }
     }
 
     /* CTA line */
-    .ctaLine{ margin-top: 8px; display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
-
-    /* FAQ */
-    .faq details{
-      background:rgba(246,245,243,.05);
-      border:1px solid rgba(180,221,227,.18);
-      border-radius:16px;
-      padding:12px 14px;
-      margin:10px 0;
-      box-shadow: 0 12px 36px rgba(0,0,0,.18);
-    }
-    .faq summary{ cursor:pointer; font-weight:820; color:var(--text); list-style:none; letter-spacing:-.1px; }
-    .faq summary::-webkit-details-marker{ display:none; }
-    .faq .a{ color:var(--muted); margin-top:10px; white-space:pre-line; }
+    .ctaLine{ margin-top: 10px; display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
 
     /* About */
     .aboutGrid{ display:grid; grid-template-columns: 1fr; gap:16px; align-items:center; }
     @media (min-width: 920px){ .aboutGrid{ grid-template-columns: .9fr 1.1fr; } }
-    .aboutName{ font-size: 18px; font-weight: 900; letter-spacing: -.3px; margin: 0 0 6px; }
+    .aboutName{ font-size: 18px; font-weight: 920; letter-spacing: -.35px; margin: 0 0 6px; }
     .aboutRole{ margin: 0 0 12px; color: var(--muted2); font-size: 13px; letter-spacing: .25px; }
-    .aboutText{ margin: 0; color: var(--muted); white-space: pre-line; max-width: 78ch; }
-
     .badgeRow{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 12px; }
     .badge{
       display:inline-flex; align-items:center; gap:8px;
       padding:10px 12px; border-radius:999px;
       background: rgba(246,245,243,.05);
-      border: 1px solid rgba(180,221,227,.18);
-      color: rgba(246,245,243,.84);
+      border: 1px solid var(--borderHi);
+      color: rgba(246,245,243,.86);
       font-size: 12px;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
     }
     .badge i{
       width:8px; height:8px; border-radius:999px;
-      background: rgba(0,151,178,.9);
+      background: rgba(0,151,178,.92);
       box-shadow: 0 0 0 5px rgba(0,151,178,.14);
       display:inline-block;
     }
+
+    /* FAQ */
+    .faq details{
+      background:rgba(246,245,243,.05);
+      border:1px solid var(--borderHi);
+      border-radius:16px;
+      padding:12px 14px;
+      margin:10px 0;
+      box-shadow: 0 12px 36px rgba(0,0,0,.18);
+    }
+    .faq summary{ cursor:pointer; font-weight:880; color:var(--text); list-style:none; letter-spacing:-.12px; }
+    .faq summary::-webkit-details-marker{ display:none; }
+    .faq .a{ color:var(--muted); margin-top:10px; font-size:16px; line-height:1.62; }
 
     /* Footer */
     .footer{
@@ -352,7 +357,6 @@
     .cookie p{ margin:0; color:rgba(246,245,243,.86); font-size:13px; max-width:72ch; }
     .cookie .actions{ display:flex; gap:10px; align-items:center; }
     .cookie .link{ color:rgba(246,245,243,.92); text-decoration:underline; text-underline-offset:3px; }
-
   </style>
 </head>
 
@@ -363,18 +367,12 @@
       <span class="pill">Pre-Launch · <b>Interesse vormerken</b></span>
     </div>
 
-    <!-- ABOVE THE FOLD -->
+    <!-- HERO -->
     <section class="hero" id="top">
       <div class="heroLeft">
         <div class="kicker">STATE</div>
-
         <h1 class="atfTitle">Mehr Fokus. Besser schlafen. Abends wirklich abschalten.</h1>
-
-        <p class="atfSub">
-          Ein personalisierter Trainingsplan für dein Nervensystem.<br/>
-          Wenige Minuten am Tag. Spürbare Wirkung im Alltag.
-        </p>
-
+        <p class="atfSub">Ein personalisierter Trainingsplan für dein Nervensystem.<br/>Wenige Minuten am Tag. Spürbare Wirkung im Alltag.</p>
         <p class="atfTag">👉 Individuell. Funktional. Ohne Methodenchaos.</p>
       </div>
 
@@ -383,16 +381,14 @@
       </div>
     </section>
 
-    <!-- SECTION: Intro + CTA -->
+    <!-- INTRO -->
     <section class="section" id="intro">
       <div class="grid2">
         <div class="stack">
-          <p class="lead">Du hast wenig Zeit. Dein Kopf ist permanent eingeschaltet. Und du willst Dinge, die dir wirklich helfen – nicht erklären, motivieren oder beschäftigen.
-STATE erstellt einen personalisierten Plan, der dir hilft, fokussierter zu arbeiten, abends runterzufahren und wieder in ein stabiles Grundniveau zu finden.
-
-Kein Content-Hub. Keine Mediathek. Kein „probier mal diese Übung“.
-
-Ein Plan. Für dich. Für deinen Alltag.</p>
+          <p class="lead p pTight">Du hast wenig Zeit. Dein Kopf ist permanent eingeschaltet. Und du willst Dinge, die dir wirklich helfen – nicht erklären, motivieren oder beschäftigen.</p>
+          <p class="lead p pTight">STATE erstellt einen personalisierten Plan, der dir hilft, fokussierter zu arbeiten, abends runterzufahren und wieder in ein stabiles Grundniveau zu finden.</p>
+          <p class="lead p pTight">Kein Content-Hub. Keine Mediathek. Kein „probier mal diese Übung“.</p>
+          <p class="lead p pTight"><span class="strong">Ein Plan. Für dich. Für deinen Alltag.</span></p>
 
           <div class="ctaLine">
             <a class="btn btnPrimary" href="#interesse">👉 Interesse vormerken</a>
@@ -400,25 +396,25 @@ Ein Plan. Für dich. Für deinen Alltag.</p>
         </div>
 
         <div class="media mediaTall" aria-label="Hohe mentale Belastung im Alltag">
-          <img src="./img-high-mental-load.png" alt="Hohe mentale Belastung im Alltag" loading="lazy" />
+          <img src="./img-01-high-mental-load.png" alt="Hohe mentale Belastung im Alltag" loading="lazy" />
         </div>
       </div>
     </section>
 
-    <!-- Separator 1 (slim strip) -->
+    <!-- SEPARATOR 1 -->
     <div class="separator" aria-label="Separator 1">
       <div class="media">
-        <img src="./img-separator-1.png" alt="Separator Bild 1" loading="lazy" />
+        <img src="./img-02-separator-1.png" alt="Separator Bild 1" loading="lazy" />
       </div>
     </div>
 
-    <!-- SECTION: Was ist STATE? -->
+    <!-- WAS IST STATE -->
     <section class="section" id="was-ist-state">
       <div class="grid2">
         <div class="stack">
           <h2>Was ist STATE?</h2>
 
-          <p class="copy">STATE ist ein personalisierter Trainingsplan für dein Nervensystem, der Menschen mit hoher mentaler Belastung dabei unterstützt,</p>
+          <p class="copy p">STATE ist ein personalisierter Trainingsplan für dein Nervensystem, der Menschen mit hoher mentaler Belastung dabei unterstützt,</p>
 
           <div class="listBox" aria-label="Benefits Liste">
             <ul>
@@ -429,56 +425,57 @@ Ein Plan. Für dich. Für deinen Alltag.</p>
             </ul>
           </div>
 
-          <p class="copy">ohne täglich Zeit in Tools, Methoden oder Entscheidungen zu investieren.</p>
-
-          <p class="copy">STATE kombiniert wissenschaftlich fundierte Ansätze aus Atemarbeit, Nervensystemforschung und Polyvagaltheorie – übersetzt in konkrete, alltagstaugliche Umsetzung.</p>
+          <p class="copy p">ohne täglich Zeit in Tools, Methoden oder Entscheidungen zu investieren.</p>
+          <p class="copy p">STATE kombiniert wissenschaftlich fundierte Ansätze aus Atemarbeit, Nervensystemforschung und Polyvagaltheorie – übersetzt in konkrete, alltagstaugliche Umsetzung.</p>
 
           <div class="card" style="padding:14px 16px;">
-            <p class="copy" style="margin:0; color: var(--text); opacity:.94;">Nicht mehr wissen. Sondern wissen, was dir jetzt wirklich hilft.</p>
+            <p class="copy p" style="margin:0; color: var(--text); opacity:.94;">Nicht mehr wissen. <span class="strong">Sondern wissen, was dir jetzt wirklich hilft.</span></p>
           </div>
         </div>
 
         <div class="media mediaTall" aria-label="Wissenschaftlich fundiert, funktional">
-          <img src="./img-science-functional.png" alt="Wissenschaftlich fundiert, funktional" loading="lazy" />
+          <img src="./img-03-science-functional.png" alt="Wissenschaftlich fundiert, funktional" loading="lazy" />
         </div>
       </div>
     </section>
 
-    <!-- SECTION: Warum du dich so fühlst -->
+    <!-- WARUM -->
     <section class="section" id="warum">
       <div class="grid2">
-        <div class="media mediaTall" aria-label="Permanente Aktivierung">
-          <img src="./img-mental-activation.png" alt="Permanente mentale Aktivierung" loading="lazy" />
+        <div class="media mediaTall" aria-label="Permanente mentale Aktivierung">
+          <img src="./img-04-mental-activation.png" alt="Permanente mentale Aktivierung" loading="lazy" />
         </div>
 
         <div class="stack">
           <h2>Warum du dich fühlst, wie du dich fühlst</h2>
 
-          <p class="copy">Es ist nicht nur der Stress. Es ist die permanente mentale Aktivierung.
+          <p class="copy p pTight"><span class="strong">Es ist nicht nur der Stress.</span> Es ist die permanente mentale Aktivierung.</p>
 
-Was mache ich heute? Was passt jetzt? Wie lange? Morgens oder abends? Bringt das bei mir überhaupt etwas?
+          <p class="copy p pTight">Was mache ich heute? Was passt jetzt? Wie lange? Morgens oder abends? Bringt das bei mir überhaupt etwas?</p>
 
-Du hast Apps probiert. Meditation. Atemübungen. Journaling. YouTube.
-Aber funktioniert hat es nie. Nicht, weil die Ansätze falsch sind, sondern weil sie nicht auf dich zugeschnitten waren und nicht in deinen Alltag gepasst haben.
-Und weil du für all das Zeit, Aufmerksamkeit und Geduld aufbringen musstest, die du schlicht nicht mehr hast.</p>
+          <p class="copy p pTight">Du hast Apps probiert. Meditation. Atemübungen. Journaling. YouTube.</p>
+
+          <p class="copy p pTight">Aber funktioniert hat es nie. Nicht, weil die Ansätze falsch sind, sondern weil sie nicht auf dich zugeschnitten waren und nicht in deinen Alltag gepasst haben.</p>
+
+          <p class="copy p pTight">Und weil du für all das Zeit, Aufmerksamkeit und Geduld aufbringen musstest, die du schlicht nicht mehr hast.</p>
         </div>
       </div>
     </section>
 
-    <!-- Separator 2 -->
+    <!-- SEPARATOR 2 -->
     <div class="separator" aria-label="Separator 2">
       <div class="media">
-        <img src="./img-separator-2.png" alt="Separator Bild 2" loading="lazy" />
+        <img src="./img-05-separator-2.png" alt="Separator Bild 2" loading="lazy" />
       </div>
     </div>
 
-    <!-- SECTION: Was du eigentlich willst -->
+    <!-- WAS DU WILLST -->
     <section class="section" id="was-du-willst">
       <div class="grid2">
         <div class="stack">
           <h2>Was du eigentlich willst</h2>
 
-          <p class="copy">Du willst keine neue Methode. Du willst ein Ergebnis:</p>
+          <p class="copy p">Du willst keine neue Methode. Du willst ein Ergebnis:</p>
 
           <div class="listBox" aria-label="Ergebnis Liste">
             <ul>
@@ -491,25 +488,25 @@ Und weil du für all das Zeit, Aufmerksamkeit und Geduld aufbringen musstest, 
             </ul>
           </div>
 
-          <p class="copy"><span class="strong">Nicht irgendwann. Jetzt. Im Alltag.</span></p>
+          <p class="copy p"><span class="strong">Nicht irgendwann. Jetzt. Im Alltag.</span></p>
         </div>
 
-        <div class="media mediaTall" aria-label="Klarheit & Abschalten">
-          <img src="./img-clarity-sleep.png" alt="Klarheit und Abschalten" loading="lazy" />
+        <div class="media mediaTall" aria-label="Klarheit und Abschalten">
+          <img src="./img-06-clarity-sleep.png" alt="Klarheit und Abschalten" loading="lazy" />
         </div>
       </div>
     </section>
 
-    <!-- SECTION: Wie STATE funktioniert -->
+    <!-- WIE STATE FUNKTIONIERT -->
     <section class="section" id="wie">
       <h2>Wie STATE funktioniert (ohne Umwege)</h2>
 
       <div class="grid2" style="margin-top:10px;">
         <div class="stack">
-          <p class="copy">Du beantwortest wenige, gezielte Fragen – z. B.:</p>
+          <p class="copy p">Du beantwortest wenige, gezielte Fragen – z. B.:</p>
 
           <div class="card">
-            <p class="copy" style="margin:0 0 10px; color:var(--text); opacity:.94;"><span class="strong">Was ist dein aktuelles Ziel?</span></p>
+            <p class="copy p" style="margin:0 0 10px; color:var(--text); opacity:.94;"><span class="strong">Was ist dein aktuelles Ziel?</span></p>
             <div class="listBox" style="box-shadow:none;">
               <ul>
                 <li>Mehr Fokus & mentale Klarheit</li>
@@ -521,7 +518,7 @@ Und weil du für all das Zeit, Aufmerksamkeit und Geduld aufbringen musstest, 
           </div>
 
           <div class="card">
-            <p class="copy" style="margin:0 0 10px; color:var(--text); opacity:.94;"><span class="strong">Dazu kommen Fragen zu:</span></p>
+            <p class="copy p" style="margin:0 0 10px; color:var(--text); opacity:.94;"><span class="strong">Dazu kommen Fragen zu:</span></p>
             <div class="listBox" style="box-shadow:none;">
               <ul>
                 <li>deinem Zeitbudget</li>
@@ -530,27 +527,26 @@ Und weil du für all das Zeit, Aufmerksamkeit und Geduld aufbringen musstest, 
             </div>
           </div>
 
-          <p class="copy">Auf dieser Basis erstellt STATE deinen individuellen Plan.
-Kein One-Size-Fits-All. Kein starres Schema. Sondern ein Plan, der sich anpasst, wenn du dich veränderst.</p>
+          <p class="copy p">Auf dieser Basis erstellt STATE deinen individuellen Plan. Kein One-Size-Fits-All. Kein starres Schema. Sondern ein Plan, der sich anpasst, wenn du dich veränderst.</p>
         </div>
 
         <div class="media mediaTall" aria-label="Plan Vorschau">
-          <img src="./img-plan-preview.png" alt="Beispiel eines STATE Plans" loading="lazy" />
+          <img src="./img-07-plan-preview.png" alt="Beispiel eines STATE Plans" loading="lazy" />
         </div>
       </div>
     </section>
 
-    <!-- SECTION: Wenige Minuten -->
+    <!-- WENIGE MINUTEN -->
     <section class="section" id="wenige-minuten">
       <div class="grid2">
-        <div class="media mediaTall" aria-label="2–10 Minuten">
-          <img src="./img-2-10-min.png" alt="2 bis 10 Minuten pro Tag" loading="lazy" />
+        <div class="media mediaTall" aria-label="2 bis 10 Minuten pro Tag">
+          <img src="./img-08-2-10-min.png" alt="2 bis 10 Minuten pro Tag" loading="lazy" />
         </div>
 
         <div class="stack">
           <h2>Wenige Minuten. Echter Unterschied.</h2>
 
-          <p class="copy">STATE funktioniert nicht, weil du diszipliniert bist. Sondern weil es einfach ist.</p>
+          <p class="copy p">STATE funktioniert nicht, weil du diszipliniert bist. Sondern weil es einfach ist.</p>
 
           <div class="listBox" aria-label="Warum es funktioniert">
             <ul>
@@ -562,20 +558,18 @@ Kein One-Size-Fits-All. Kein starres Schema. Sondern ein Plan, der sich anpa
             </ul>
           </div>
 
-          <p class="copy">Du öffnest STATE. Du siehst: Das ist heute dran. Du machst es. Und gehst weiter.
-
-Genau so entsteht Veränderung, die sich in dein Leben integriert, statt es noch voller zu machen.</p>
+          <p class="copy p pTight">Du öffnest STATE. Du siehst: Das ist heute dran. Du machst es. Und gehst weiter.</p>
+          <p class="copy p pTight">Genau so entsteht Veränderung, die sich in dein Leben integriert, statt es noch voller zu machen.</p>
         </div>
       </div>
     </section>
 
-    <!-- SECTION: Veränderung -->
+    <!-- WAS SICH VERÄNDERT -->
     <section class="section" id="veraenderung">
       <div class="grid2">
         <div class="stack">
           <h2>Was sich durch STATE verändert</h2>
-
-          <p class="copy">Nicht auf einer Hochglanz-Grafik. Sondern im echten Leben.</p>
+          <p class="copy p">Nicht auf einer Hochglanz-Grafik. Sondern im echten Leben.</p>
 
           <div class="listBox" aria-label="Veränderungen Liste">
             <ul>
@@ -588,69 +582,76 @@ Genau so entsteht Veränderung, die sich in dein Leben integriert, statt es 
             </ul>
           </div>
 
-          <p class="copy">STATE verspricht keine Wunder. STATE schafft Bedingungen, unter denen dein System wieder zuverlässig arbeiten kann.</p>
+          <p class="copy p">STATE verspricht keine Wunder. STATE schafft Bedingungen, unter denen dein System wieder zuverlässig arbeiten kann.</p>
         </div>
 
         <div class="media mediaTall" aria-label="Ruhigeres Grundniveau">
-          <img src="./img-stable-baseline.png" alt="Ruhigeres Grundniveau" loading="lazy" />
+          <img src="./img-09-stable-baseline.png" alt="Ruhigeres Grundniveau" loading="lazy" />
         </div>
       </div>
     </section>
 
-    <!-- SECTION: Haltung (deine Copy, lesefreundlich) -->
-    <section class="section" id="haltung">
+    <!-- ABOUT -->
+    <section class="section" id="ueber-mich">
       <div class="card">
-        <h2>Haltung</h2>
-        <p class="copy">Hi, ich bin Nora  und STATE ist nicht entstanden, 
-weil es noch eine Methode gebraucht hätte. 
+        <div class="aboutGrid">
+          <div class="media mediaTall" aria-label="Über mich">
+            <img src="./img-10-about-nora.png" alt="Nora – Über mich" loading="lazy" />
+          </div>
 
-STATE ist entstanden, 
-weil es zu viele gibt. 
+          <div class="stack">
+            <h2>Über mich</h2>
+            <p class="aboutName">Nora Becker</p>
+            <p class="aboutRole">Konzept · Nervensystemarbeit · Breathwork · Struktur</p>
 
-Jahrelang habe ich für mich (und meine Kunden) 
-nach der perfekten Methode gesucht, 
-um endlich glücklicher, gesünder oder fokussierter zu sein. 
+            <p class="copy p pTight">Hi, ich bin Nora und STATE ist nicht entstanden, weil es noch eine Methode gebraucht hätte.</p>
+            <p class="copy p pTight"><span class="strong">STATE ist entstanden, weil es zu viele gibt.</span></p>
+            <p class="copy p pTight">Jahrelang habe ich für mich (und meine Kunden) nach der perfekten Methode gesucht, um endlich glücklicher, gesünder oder fokussierter zu sein.</p>
+            <p class="copy p pTight">Um am Ende festzustellen, dass nichts davon funktioniert, wenn wir doch das Gefühl haben, dass irgendetwas anderes „noch besser“ helfen könnte.</p>
+            <p class="copy p pTight">STATE ist die logische Folge einer Erkenntnis: <span class="strong">Radikale Einfachheit gewinnt.</span></p>
 
-Um am Ende festzustellen, dass nichts davon funktioniert, 
-wenn wir doch das Gefühl haben, 
-dass irgendetwas anderes 'noch besser' helfen könnte. 
+            <div class="badgeRow" aria-label="Trust badges">
+              <span class="badge"><i aria-hidden="true"></i>Atemarbeit</span>
+              <span class="badge"><i aria-hidden="true"></i>Polyvagal</span>
+              <span class="badge"><i aria-hidden="true"></i>Alltagstauglich</span>
+              <span class="badge"><i aria-hidden="true"></i>Struktur statt Overload</span>
+            </div>
 
-STATE ist die logische Folge einer Erkenntnis: 
-<span class="strong">Radikale Einfachheit gewinnt.</span></p>
-
-        <div class="ctaLine" style="margin-top:14px;">
-          <a class="btn btnPrimary" href="#interesse">👉 Interesse vormerken</a>
+            <div class="ctaLine" style="margin-top:14px;">
+              <a class="btn btnPrimary" href="#interesse">👉 Interesse vormerken</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION: Prinzipien (crunched to 3) -->
+    <!-- PRINZIPIEN (3) -->
     <section class="section" id="prinzipien">
       <h2>STATE folgt keinen Trends. STATE folgt Prinzipien.</h2>
-      <p class="copy">Daher steht STATE für …</p>
+      <p class="copy p">Daher steht STATE für …</p>
 
       <div class="tiles3" aria-label="Prinzipien">
         <div class="tile">
           <h3>Radikale Einfachheit</h3>
-          <p>Nicht, weil weniger trendy ist. Sondern weil zu viel der eigentliche Stressor ist.</p>
+          <p>Nicht, weil weniger trendy ist. Sondern weil zu viel der eigentliche Stressor ist.</p>
         </div>
 
         <div class="tile">
           <h3>Entlastung vor Aktivierung</h3>
-          <p>Wir fügen nichts hinzu, bevor etwas gehen durfte.</p>
+          <p>Wir fügen nichts hinzu, bevor etwas gehen durfte.</p>
         </div>
 
         <div class="tile">
           <h3>Zustand vor Methode</h3>
-          <p>Was du tust, ist zweitrangig. Aus welchem Zustand heraus du es tust, nicht.</p>
+          <p>Was du tust, ist zweitrangig. Aus welchem Zustand heraus du es tust, nicht.</p>
         </div>
       </div>
     </section>
 
-    <!-- Separator 3 -->
+    <!-- SEPARATOR 3 -->
     <div class="separator" aria-label="Separator 3">
       <div class="media">
-        <img src="./img-separator-3.png" alt="Separator Bild 3" loading="lazy" />
+        <img src="./img-11-separator-3.png" alt="Separator Bild 3" loading="lazy" />
       </div>
     </div>
 
@@ -660,37 +661,32 @@ STATE ist die logische Folge einer Erkenntnis:
 
       <details>
         <summary>„Funktioniert das wirklich bei mir?“</summary>
-        <div class="a">Ja, weil der Plan für dich gemacht ist. 
-Basierend auf deinem Ziel, deiner Zeit und deinem aktuellen Status.</div>
+        <div class="a">Ja, weil der Plan für dich gemacht ist. Basierend auf deinem Ziel, deiner Zeit und deinem aktuellen Status.</div>
       </details>
 
       <details>
         <summary>„Ich habe keine Zeit für noch eine App.“</summary>
-        <div class="a">STATE braucht weniger Zeit als jede Meditations- oder Atem-App. 
-2–10 Minuten. Punkt.</div>
+        <div class="a">STATE braucht weniger Zeit als jede Meditations- oder Atem-App. 2–10 Minuten. Punkt.</div>
       </details>
 
       <details>
         <summary>„Was, wenn ich es wieder nicht durchziehe?“</summary>
-        <div class="a">STATE ist so gebaut, dass du nicht motiviert sein musst. 
-Du setzt um – der Plan übernimmt den Rest.</div>
+        <div class="a">STATE ist so gebaut, dass du nicht motiviert sein musst. Du setzt um – der Plan übernimmt den Rest.</div>
       </details>
 
       <details>
         <summary>„Ist das wieder so Wellness-Zeug?“</summary>
-        <div class="a">Nein. 
-STATE ist funktional. 
-Wie ein Trainingsplan – nur für dein Nervensystem.</div>
+        <div class="a">Nein. STATE ist funktional. Wie ein Trainingsplan – nur für dein Nervensystem.</div>
       </details>
     </section>
 
-    <!-- SECTION: Für wen -->
+    <!-- FÜR WEN -->
     <section class="section" id="fuer-wen">
       <h2>Für wen STATE gedacht ist</h2>
 
       <div class="grid2" style="margin-top:10px;">
         <div class="card">
-          <h3 style="margin:0 0 10px; font-size:15px; letter-spacing:-.15px; font-weight:880;">STATE ist für Menschen, die:</h3>
+          <h3 style="margin:0 0 10px; font-size:15px; letter-spacing:-.15px; font-weight:920;">STATE ist für Menschen, die:</h3>
           <div class="listBox" style="box-shadow:none;">
             <ul>
               <li>viel Verantwortung tragen</li>
@@ -703,7 +699,7 @@ Wie ein Trainingsplan – nur für dein Nervensystem.</div>
         </div>
 
         <div class="card">
-          <h3 style="margin:0 0 10px; font-size:15px; letter-spacing:-.15px; font-weight:880;">STATE ist nicht für dich, wenn du:</h3>
+          <h3 style="margin:0 0 10px; font-size:15px; letter-spacing:-.15px; font-weight:920;">STATE ist nicht für dich, wenn du:</h3>
           <div class="listBox" style="box-shadow:none;">
             <ul>
               <li>schnelle Heilung erwartest</li>
@@ -716,29 +712,28 @@ Wie ein Trainingsplan – nur für dein Nervensystem.</div>
       </div>
     </section>
 
-    <!-- SECTION: Aktueller Stand + CTA -->
+    <!-- AKTUELLER STAND -->
     <section class="section" id="launch">
       <div class="card">
         <h2 style="margin-top:0;">Aktueller Stand</h2>
 
-        <p class="copy">STATE befindet sich aktuell vor dem Launch.
-Diese Seite ist für Menschen, die sich hier wiedererkennen und wissen:
-<span class="strong">Wenn das live ist, will ich das nutzen.</span></p>
+        <p class="copy p pTight">STATE befindet sich aktuell vor dem Launch.</p>
+        <p class="copy p pTight">Diese Seite ist für Menschen, die sich hier wiedererkennen und wissen: <span class="strong">Wenn das live ist, will ich das nutzen.</span></p>
 
         <div class="ctaLine" style="margin-top:14px;">
           <a class="btn btnPrimary" href="#interesse">👉 Interesse vormerken</a>
         </div>
 
-        <p class="copy" style="margin-top:14px; color:var(--muted2);">Kein Spam. Kein Druck. Nur ein Update, wenn STATE verfügbar ist.</p>
+        <p class="copy p" style="margin-top:14px; color:var(--muted2);">Kein Spam. Kein Druck. Nur ein Update, wenn STATE verfügbar ist.</p>
       </div>
     </section>
 
-    <!-- Interest anchor (form comes later) -->
+    <!-- INTERESSE -->
     <section class="section" id="interesse">
       <div class="card">
         <h2 style="margin-top:0;">Interesse vormerken</h2>
-        <p class="copy">Hier kommt als nächstes das Formular rein.</p>
-        <p class="copy" style="color:var(--muted2);">Wir bauen das nach dem Design-Finish (Brevo, Double-Opt-in).</p>
+        <p class="copy p">Hier kommt als nächstes das Formular rein.</p>
+        <p class="copy p" style="color:var(--muted2);">Wir bauen das nach dem Design-Finish (Brevo, Double-Opt-in).</p>
       </div>
     </section>
 
