@@ -15,9 +15,9 @@
       --c1:#0097b2; --c2:#004e5b; --c3:#b4dde3; --c4:#e9d8b2; --c5:#f6f5f3;
       --bg:#041b20;
 
-      --text: rgba(246,245,243,.92);
-      --muted: rgba(246,245,243,.76);
-      --muted2: rgba(246,245,243,.60);
+          --text: rgba(246,245,243,.97);
+      --muted: rgba(246,245,243,.86);
+      --muted2: rgba(246,245,243,.70);
 
       --brand: var(--c1);
       --brand2:#27a9c0;
@@ -116,12 +116,15 @@
       margin: 0 0 14px;
       letter-spacing: -0.9px;
       font-weight: 900;
+            color: rgba(246,245,243,.98);
+      text-shadow: 0 10px 40px rgba(0,0,0,.55);
     }
     .atfSub{
       margin: 0 0 14px;
       color: var(--muted);
       font-size: clamp(16px, 3.6vw, 19px);
       max-width: 44ch;
+            text-shadow: 0 8px 26px rgba(0,0,0,.45);
     }
     .atfTag{
       margin: 0;
@@ -268,10 +271,9 @@
       content:"";
       position:absolute;
       inset:0;
-      background:
-        radial-gradient(900px 420px at 20% 30%, rgba(4,27,32,.35), transparent 62%),
-        linear-gradient(90deg, rgba(4,27,32,.72) 0%, rgba(4,27,32,.42) 52%, rgba(4,27,32,.22) 100%);
-      pointer-events:none;
+            background:
+        radial-gradient(900px 420px at 20% 30%, rgba(4,27,32,.46), transparent 62%),
+        linear-gradient(90deg, rgba(4,27,32,.86) 0%, rgba(4,27,32,.56) 52%, rgba(4,27,32,.24) 100%);
     }
 
     .heroInner{
@@ -299,11 +301,12 @@
       align-items:center;
     }
 
-    .phoneMock{
-      width: min(400px, 86vw);
+      .phoneMock{
+      width: min(360px, 82vw);
       height: auto;
+      max-height: 520px;
       filter: drop-shadow(0 34px 90px rgba(0,0,0,.55));
-      transform: rotate(2deg) translateY(6px);
+      transform: rotate(2deg) translateY(0px);
     }
     @media (min-width: 920px){
       .phoneMock{
